@@ -23,7 +23,7 @@
 /* USER CODE BEGIN Includes */
 
 #include <string.h>
-
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -120,6 +120,36 @@ int main(void)
   {
     Error_Handler();
   }
+
+  char msg[40];
+
+  for (uint16_t addr = 0x08; addr <= 0x77; addr++)
+  {
+    if (HAL_I2C_IsDeviceReady(&hi2c1, addr << 1, 2, 20) == HAL_OK)
+    {
+      int len = snprintf(
+          msg,
+          sizeof(msg),
+          "I2C DEVICE FOUND: 0x%02X\r\n",
+          addr
+      );
+
+      HAL_UART_Transmit(
+          &hcom_uart[COM1],
+          (uint8_t *)msg,
+          len,
+          HAL_MAX_DELAY
+      );
+    }
+  }
+  
+  static const char scanDone[] = "I2C SCAN COMPLETE\r\n";
+  HAL_UART_Transmit(
+      &hcom_uart[COM1],
+      (uint8_t *)scanDone,
+      sizeof(scanDone) - 1,
+      HAL_MAX_DELAY
+  );
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
