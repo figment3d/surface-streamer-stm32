@@ -63,6 +63,33 @@ static void MX_I2C1_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+static int I2C_SensorDetected(void)
+{
+  hi2c1.Instance->ICR =
+      I2C_ICR_NACKCF |
+      I2C_ICR_STOPCF |
+      I2C_ICR_BERRCF |
+      I2C_ICR_ARLOCF;
+
+  hi2c1.Instance->CR2 =
+      (0x29 << 1) |
+      I2C_CR2_AUTOEND |
+      I2C_CR2_START;
+
+  HAL_Delay(2);
+
+  uint32_t isr = hi2c1.Instance->ISR;
+  int detected = ((isr & I2C_ISR_NACKF) == 0);
+
+  hi2c1.Instance->ICR =
+      I2C_ICR_NACKCF |
+      I2C_ICR_STOPCF |
+      I2C_ICR_BERRCF |
+      I2C_ICR_ARLOCF;
+
+  return detected;
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -121,38 +148,9 @@ int main(void)
     Error_Handler();
   }
 
-  char msg[40];
-
-  for (uint16_t addr = 0x08; addr <= 0x77; addr++)
-  {
-    if (HAL_I2C_IsDeviceReady(&hi2c1, addr << 1, 2, 20) == HAL_OK)
-    {
-      int len = snprintf(
-          msg,
-          sizeof(msg),
-          "I2C DEVICE FOUND: 0x%02X\r\n",
-          addr
-      );
-
-      HAL_UART_Transmit(
-          &hcom_uart[COM1],
-          (uint8_t *)msg,
-          len,
-          HAL_MAX_DELAY
-      );
-    }
-  }
-  
-  static const char scanDone[] = "I2C SCAN COMPLETE\r\n";
-  HAL_UART_Transmit(
-      &hcom_uart[COM1],
-      (uint8_t *)scanDone,
-      sizeof(scanDone) - 1,
-      HAL_MAX_DELAY
-  );
-
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
     /* USER CODE END WHILE */
@@ -186,6 +184,33 @@ int main(void)
                 sizeof(reply) - 1,
                 HAL_MAX_DELAY
             );
+          }
+          else if (strcmp(rxBuf, "I2C_STATUS") == 0)
+          {
+            if (I2C_SensorDetected())
+            {
+              static const char reply[] =
+                  "I2C_READY\r\n";
+
+              HAL_UART_Transmit(
+                  &hcom_uart[COM1],
+                  (uint8_t *)reply,
+                  sizeof(reply) - 1,
+                  HAL_MAX_DELAY
+              );
+            }
+            else
+            {
+              static const char reply[] =
+                  "I2C_NOT_DETECTED\r\n";
+
+              HAL_UART_Transmit(
+                  &hcom_uart[COM1],
+                  (uint8_t *)reply,
+                  sizeof(reply) - 1,
+                  HAL_MAX_DELAY
+              );
+            }
           }
 
           rxIndex = 0;
@@ -305,14 +330,26 @@ static void MX_I2C1_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* USER CODE BEGIN MX_GPIO_Init_1 */
 
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(I2C_SHUT_GPIO_Port, I2C_SHUT_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin : I2C_SHUT_Pin */
+  GPIO_InitStruct.Pin = I2C_SHUT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(I2C_SHUT_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 

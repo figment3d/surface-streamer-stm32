@@ -60,6 +60,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define I2C_SHUT_Pin GPIO_PIN_3
+#define I2C_SHUT_GPIO_Port GPIOF
 
 /* USER CODE BEGIN Private defines */
 
