@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "VL53L1X_api.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -148,6 +149,15 @@ int main(void)
     Error_Handler();
   }
 
+  uint8_t vl53_status = 0;
+
+  if (VL53L1X_SensorInit(0x52) == 0)
+  {
+      if (VL53L1X_StartRanging(0x52) == 0)
+      {
+          vl53_status = 1;
+      }
+  }
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
@@ -189,25 +199,37 @@ int main(void)
           {
             if (I2C_SensorDetected())
             {
-              static const char reply[] =
-                  "I2C_READY\r\n";
+              uint16_t distance = 0;
+              uint8_t dataReady = 0;
+              char reply[64];
+
+              if (vl53_status &&
+                  VL53L1X_CheckForDataReady(0x52, &dataReady) == 0 &&
+                  dataReady &&
+                  VL53L1X_GetDistance(0x52, &distance) == 0)
+              {
+                VL53L1X_ClearInterrupt(0x52);
+
+                snprintf(
+                    reply,
+                    sizeof(reply),
+                    "I2C_READY %u\r\n",
+                    distance
+                );
+              }
+              else
+              {
+                snprintf(
+                    reply,
+                    sizeof(reply),
+                    "I2C_READY\r\n"
+                );
+              }
 
               HAL_UART_Transmit(
                   &hcom_uart[COM1],
                   (uint8_t *)reply,
-                  sizeof(reply) - 1,
-                  HAL_MAX_DELAY
-              );
-            }
-            else
-            {
-              static const char reply[] =
-                  "I2C_NOT_DETECTED\r\n";
-
-              HAL_UART_Transmit(
-                  &hcom_uart[COM1],
-                  (uint8_t *)reply,
-                  sizeof(reply) - 1,
+                  strlen(reply),
                   HAL_MAX_DELAY
               );
             }
