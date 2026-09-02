@@ -18,11 +18,10 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "VL53L1X_api.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "VL53L1X_api.h"
 #include <string.h>
 #include <stdio.h>
 /* USER CODE END Includes */
@@ -48,7 +47,10 @@ COM_InitTypeDef BspCOMInit;
 
 I2C_HandleTypeDef hi2c1;
 
+SPI_HandleTypeDef hspi1;
+
 /* USER CODE BEGIN PV */
+uint8_t vl53_status = 0;
 
 /* USER CODE END PV */
 
@@ -57,6 +59,7 @@ void SystemClock_Config(void);
 static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_SPI1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -126,7 +129,15 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
+if (VL53L1X_SensorInit(0x52) == 0)
+{
+    if (VL53L1X_StartRanging(0x52) == 0)
+    {
+        vl53_status = 1;
+    }
+}
 
   /* USER CODE END 2 */
 
@@ -149,15 +160,6 @@ int main(void)
     Error_Handler();
   }
 
-  uint8_t vl53_status = 0;
-
-  if (VL53L1X_SensorInit(0x52) == 0)
-  {
-      if (VL53L1X_StartRanging(0x52) == 0)
-      {
-          vl53_status = 1;
-      }
-  }
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
@@ -195,35 +197,125 @@ int main(void)
                 HAL_MAX_DELAY
             );
           }
+
           else if (strcmp(rxBuf, "I2C_STATUS") == 0)
           {
-            if (I2C_SensorDetected())
-            {
-              uint16_t distance = 0;
-              uint8_t dataReady = 0;
-              char reply[64];
-
-              if (vl53_status &&
-                  VL53L1X_CheckForDataReady(0x52, &dataReady) == 0 &&
-                  dataReady &&
-                  VL53L1X_GetDistance(0x52, &distance) == 0)
+              if (I2C_SensorDetected())
               {
-                VL53L1X_ClearInterrupt(0x52);
+                  uint16_t distance = 0;
+                  uint8_t dataReady = 0;
+                  char reply[64];
 
-                snprintf(
-                    reply,
-                    sizeof(reply),
-                    "I2C_READY %u\r\n",
-                    distance
-                );
+                  if (vl53_status &&
+                      VL53L1X_CheckForDataReady(0x52, &dataReady) == 0 &&
+                      dataReady &&
+                      VL53L1X_GetDistance(0x52, &distance) == 0)
+                  {
+                      VL53L1X_ClearInterrupt(0x52);
+
+                      snprintf(
+                          reply,
+                          sizeof(reply),
+                          "I2C_READY %u\r\n",
+                          distance
+                      );
+                  }
+                  else
+                  {
+                      snprintf(
+                          reply,
+                          sizeof(reply),
+                          "I2C_READY\r\n"
+                      );
+                  }
+
+                  HAL_UART_Transmit(
+                      &hcom_uart[COM1],
+                      (uint8_t *)reply,
+                      strlen(reply),
+                      HAL_MAX_DELAY
+                  );
               }
               else
               {
-                snprintf(
-                    reply,
-                    sizeof(reply),
-                    "I2C_READY\r\n"
-                );
+                  static const char reply[] =
+                      "I2C_NOT_DETECTED\r\n";
+
+                  HAL_UART_Transmit(
+                      &hcom_uart[COM1],
+                      (uint8_t *)reply,
+                      sizeof(reply) - 1,
+                      HAL_MAX_DELAY
+                  );
+              }
+          }
+          
+          else if (strcmp(rxBuf, "SPI_STATUS") == 0)
+          {
+              uint8_t tx[3] = { 0x80, 0x00, 0x00 };
+              uint8_t rx[3] = { 0 };
+              char reply[64];
+
+              /*
+              * BMI270 SPI:
+              * Register 0x00 = CHIP_ID
+              * Bit 7 = 1 for a read.
+              *
+              * First read after power-up switches the BMI270 to SPI mode.
+              */
+              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+
+              HAL_StatusTypeDef status =
+                  HAL_SPI_TransmitReceive(
+                      &hspi1,
+                      tx,
+                      rx,
+                      sizeof(tx),
+                      HAL_MAX_DELAY
+                  );
+
+              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+
+              /* Give the device a moment, then perform the real CHIP_ID read. */
+              HAL_Delay(1);
+
+              tx[0] = 0x80;
+              tx[1] = 0x00;
+              tx[2] = 0x00;
+
+              rx[0] = 0;
+              rx[1] = 0;
+              rx[2] = 0;
+
+              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+
+              status =
+                  HAL_SPI_TransmitReceive(
+                      &hspi1,
+                      tx,
+                      rx,
+                      sizeof(tx),
+                      HAL_MAX_DELAY
+                  );
+
+              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+
+              if (status == HAL_OK && rx[2] == 0x24)
+              {
+                  snprintf(
+                      reply,
+                      sizeof(reply),
+                      "SPI_CHIP_ID 0x%02X\r\n",
+                      rx[2]
+                  );
+              }
+              else
+              {
+                  snprintf(
+                      reply,
+                      sizeof(reply),
+                      "SPI_NOT_DETECTED\r\n"
+                  );
               }
 
               HAL_UART_Transmit(
@@ -232,9 +324,7 @@ int main(void)
                   strlen(reply),
                   HAL_MAX_DELAY
               );
-            }
           }
-
           rxIndex = 0;
         }
       }
@@ -272,7 +362,16 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_DIV1;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = 4;
+  RCC_OscInitStruct.PLL.PLLN = 9;
+  RCC_OscInitStruct.PLL.PLLP = 2;
+  RCC_OscInitStruct.PLL.PLLQ = 1;
+  RCC_OscInitStruct.PLL.PLLR = 2;
+  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_3;
+  RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOMEDIUM;
+  RCC_OscInitStruct.PLL.PLLFRACN = 3072;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -346,6 +445,54 @@ static void MX_I2C1_Init(void)
 }
 
 /**
+  * @brief SPI1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI1_Init(void)
+{
+
+  /* USER CODE BEGIN SPI1_Init 0 */
+
+  /* USER CODE END SPI1_Init 0 */
+
+  /* USER CODE BEGIN SPI1_Init 1 */
+
+  /* USER CODE END SPI1_Init 1 */
+  /* SPI1 parameter configuration*/
+  hspi1.Instance = SPI1;
+  hspi1.Init.Mode = SPI_MODE_MASTER;
+  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi1.Init.NSS = SPI_NSS_SOFT;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
+  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi1.Init.CRCPolynomial = 0x0;
+  hspi1.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
+  hspi1.Init.NSSPolarity = SPI_NSS_POLARITY_LOW;
+  hspi1.Init.FifoThreshold = SPI_FIFO_THRESHOLD_01DATA;
+  hspi1.Init.TxCRCInitializationPattern = SPI_CRC_INITIALIZATION_ALL_ZERO_PATTERN;
+  hspi1.Init.RxCRCInitializationPattern = SPI_CRC_INITIALIZATION_ALL_ZERO_PATTERN;
+  hspi1.Init.MasterSSIdleness = SPI_MASTER_SS_IDLENESS_00CYCLE;
+  hspi1.Init.MasterInterDataIdleness = SPI_MASTER_INTERDATA_IDLENESS_00CYCLE;
+  hspi1.Init.MasterReceiverAutoSusp = SPI_MASTER_RX_AUTOSUSP_DISABLE;
+  hspi1.Init.MasterKeepIOState = SPI_MASTER_KEEP_IO_STATE_DISABLE;
+  hspi1.Init.IOSwap = SPI_IO_SWAP_DISABLE;
+  if (HAL_SPI_Init(&hspi1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI1_Init 2 */
+
+  /* USER CODE END SPI1_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -361,10 +508,14 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(I2C_SHUT_GPIO_Port, I2C_SHUT_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 
   /*Configure GPIO pin : I2C_SHUT_Pin */
   GPIO_InitStruct.Pin = I2C_SHUT_Pin;
@@ -372,6 +523,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(I2C_SHUT_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PA4 */
+  GPIO_InitStruct.Pin = GPIO_PIN_4;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
