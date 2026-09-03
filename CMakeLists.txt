@@ -46,11 +46,14 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     Core/Src/VL53L1X_api.c
     Core/Src/vl53l1_platform.c
+    Core/Src/bmi270_port.c
+    Drivers/BMI270/bmi2.c
+    Drivers/BMI270/bmi270.c
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user defined include paths
+    Drivers/BMI270
 )
 
 # Add project symbols (macros)

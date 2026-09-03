@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "VL53L1X_api.h"
+#include "bmi270_port.h"
 #include <string.h>
 #include <stdio.h>
 /* USER CODE END Includes */
@@ -51,6 +52,8 @@ SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
 uint8_t vl53_status = 0;
+struct bmi2_dev bmi270_dev;
+int8_t bmi270_rslt;
 
 /* USER CODE END PV */
 
@@ -94,6 +97,23 @@ static int I2C_SensorDetected(void)
   return detected;
 }
 
+static int8_t BMI270_EnableAccelGyro(void)
+{
+    int8_t rslt;
+    uint8_t sensors[2] = {
+        BMI2_ACCEL,
+        BMI2_GYRO
+    };
+
+    rslt = bmi2_sensor_enable(
+        sensors,
+        2,
+        &bmi270_dev
+    );
+
+    return rslt;
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -130,14 +150,28 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_SPI1_Init();
+
   /* USER CODE BEGIN 2 */
-if (VL53L1X_SensorInit(0x52) == 0)
-{
-    if (VL53L1X_StartRanging(0x52) == 0)
-    {
-        vl53_status = 1;
-    }
-}
+  
+  bmi270_rslt = bmi270_stm32_interface_init(&bmi270_dev);
+
+  if (bmi270_rslt == BMI2_OK)
+  {
+      bmi270_rslt = bmi270_init(&bmi270_dev);
+
+      if (bmi270_rslt == BMI2_OK)
+      {
+          bmi270_rslt = BMI270_EnableAccelGyro();
+      }
+  }
+
+  if (VL53L1X_SensorInit(0x52) == 0)
+  {
+      if (VL53L1X_StartRanging(0x52) == 0)
+      {
+          vl53_status = 1;
+      }
+  }
 
   /* USER CODE END 2 */
 
@@ -249,64 +283,59 @@ if (VL53L1X_SensorInit(0x52) == 0)
                   );
               }
           }
-          
+  
           else if (strcmp(rxBuf, "SPI_STATUS") == 0)
           {
-              uint8_t tx[3] = { 0x80, 0x00, 0x00 };
-              uint8_t rx[3] = { 0 };
               char reply[64];
 
-              /*
-              * BMI270 SPI:
-              * Register 0x00 = CHIP_ID
-              * Bit 7 = 1 for a read.
-              *
-              * First read after power-up switches the BMI270 to SPI mode.
-              */
-              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-
-              HAL_StatusTypeDef status =
-                  HAL_SPI_TransmitReceive(
-                      &hspi1,
-                      tx,
-                      rx,
-                      sizeof(tx),
-                      HAL_MAX_DELAY
-                  );
-
-              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-
-              /* Give the device a moment, then perform the real CHIP_ID read. */
-              HAL_Delay(1);
-
-              tx[0] = 0x80;
-              tx[1] = 0x00;
-              tx[2] = 0x00;
-
-              rx[0] = 0;
-              rx[1] = 0;
-              rx[2] = 0;
-
-              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-
-              status =
-                  HAL_SPI_TransmitReceive(
-                      &hspi1,
-                      tx,
-                      rx,
-                      sizeof(tx),
-                      HAL_MAX_DELAY
-                  );
-
-              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-
-              if (status == HAL_OK && rx[2] == 0x24)
+              if (bmi270_rslt == BMI2_OK)
               {
                   snprintf(
                       reply,
                       sizeof(reply),
-                      "SPI_CHIP_ID 0x%02X\r\n",
-                      rx[2]
+                      "SPI_CHIP_ID 0x24\r\n"
+                  );
+              }
+              else
+              {
+                snprintf(
+                    reply,
+                    sizeof(reply),
+                    "SPI_NOT_DETECTED %d CHIP_ID 0x%02X\r\n",
+                    bmi270_rslt,
+                    bmi270_dev.chip_id
+                );              
+              }
+
+              HAL_UART_Transmit(
+                  &hcom_uart[COM1],
+                  (uint8_t *)reply,
+                  strlen(reply),
+                  HAL_MAX_DELAY
+              );
+          }
+          else if (strcmp(rxBuf, "SPI_DATA") == 0)
+          {
+              struct bmi2_sens_data sensor_data;
+              char reply[128];
+
+              int8_t rslt = bmi2_get_sensor_data(
+                  &sensor_data,
+                  &bmi270_dev
+              );
+
+              if (rslt == BMI2_OK)
+              {
+                  snprintf(
+                      reply,
+                      sizeof(reply),
+                      "ACC %d %d %d GYR %d %d %d\r\n",
+                      sensor_data.acc.x,
+                      sensor_data.acc.y,
+                      sensor_data.acc.z,
+                      sensor_data.gyr.x,
+                      sensor_data.gyr.y,
+                      sensor_data.gyr.z
                   );
               }
               else
@@ -314,7 +343,8 @@ if (VL53L1X_SensorInit(0x52) == 0)
                   snprintf(
                       reply,
                       sizeof(reply),
-                      "SPI_NOT_DETECTED\r\n"
+                      "SPI_DATA_ERROR %d\r\n",
+                      rslt
                   );
               }
 
@@ -325,6 +355,7 @@ if (VL53L1X_SensorInit(0x52) == 0)
                   HAL_MAX_DELAY
               );
           }
+          
           rxIndex = 0;
         }
       }
