@@ -241,7 +241,24 @@ SECTIONS
     . = ALIGN(8);
   } >DTCMRAM
 
+  /* Ethernet DMA memory */
+  .RxDescripSection (NOLOAD) :
+  {
+    . = ALIGN(32);
+    *(.RxDescripSection)
+  } >RAM_D2
 
+  .TxDescripSection (NOLOAD) :
+  {
+    . = ALIGN(32);
+    *(.TxDescripSection)
+  } >RAM_D2
+
+  .Rx_PoolSection (NOLOAD) :
+  {
+    . = ALIGN(32);
+    *(.Rx_PoolSection)
+  } >RAM_D2
 
   /* Remove information from the standard libraries */
   /DISCARD/ :

@@ -19,15 +19,16 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "lwip.h"
-#include "lwip/ip4_addr.h"
-extern struct netif gnetif;
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "VL53L1X_api.h"
-#include "bmi270_port.h"
 #include <string.h>
 #include <stdio.h>
+#include "VL53L1X_api.h"
+#include "bmi270_port.h"
+#include "lwip/ip4_addr.h"
+extern struct netif gnetif;
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -369,8 +370,9 @@ int main(void)
                   snprintf(
                       msg,
                       sizeof(msg),
-                      "ETH_IP %s\r\n",
-                      ip4addr_ntoa(netif_ip4_addr(&gnetif))
+                      "ETH_IP %s %s\r\n",
+                      ip4addr_ntoa(netif_ip4_addr(&gnetif)),
+                      netif_is_link_up(&gnetif) ? "LINK_UP" : "LINK_DOWN"
                   );
               }
               else
@@ -570,6 +572,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOG_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(I2C_SHUT_GPIO_Port, I2C_SHUT_Pin, GPIO_PIN_SET);
@@ -622,6 +625,17 @@ void MPU_Config(void)
   MPU_InitStruct.IsShareable = MPU_ACCESS_SHAREABLE;
   MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
   MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
+
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+  /** Initializes and configures the Region and the memory to be protected
+  */
+  MPU_InitStruct.Number = MPU_REGION_NUMBER1;
+  MPU_InitStruct.BaseAddress = 0x30000000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_32KB;
+  MPU_InitStruct.SubRegionDisable = 0x0;
+  MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL1;
+  MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
 
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
   /* Enables the MPU */
