@@ -18,6 +18,9 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "lwip.h"
+#include "lwip/ip4_addr.h"
+extern struct netif gnetif;
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -150,7 +153,7 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_SPI1_Init();
-
+  MX_LWIP_Init();
   /* USER CODE BEGIN 2 */
   
   bmi270_rslt = bmi270_stm32_interface_init(&bmi270_dev);
@@ -202,7 +205,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
+  
+    MX_LWIP_Process();
+  
     static uint8_t rxByte;
     static char rxBuf[32];
     static uint32_t rxIndex = 0;
@@ -355,7 +360,31 @@ int main(void)
                   HAL_MAX_DELAY
               );
           }
-          
+          else if (strcmp(rxBuf, "ETH_STATUS") == 0)
+          {
+              char msg[64];
+
+              if (gnetif.ip_addr.addr != 0)
+              {
+                  snprintf(
+                      msg,
+                      sizeof(msg),
+                      "ETH_IP %s\r\n",
+                      ip4addr_ntoa(netif_ip4_addr(&gnetif))
+                  );
+              }
+              else
+              {
+                  snprintf(msg, sizeof(msg), "ETH_NO_IP\r\n");
+              }
+
+              HAL_UART_Transmit(
+                  &hcom_uart[COM1],
+                  (uint8_t *)msg,
+                  strlen(msg),
+                  HAL_MAX_DELAY
+              );
+          }          
           rxIndex = 0;
         }
       }

@@ -1,0 +1,491 @@
+diff --git a/.mxproject b/.mxproject
+index cd0bd91..06145fd 100644
+--- a/.mxproject
++++ b/.mxproject
+@@ -1,26 +1,35 @@
+ [PreviousLibFiles]
+-LibFiles=Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_cortex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_cortex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_i2c.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_bus.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_rcc.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_crs.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_system.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_utils.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_flash.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_flash_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_gpio.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_hsem.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_hsem.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_dma.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_dmamux.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_mdma.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_pwr.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h;Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_exti.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_exti.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_spi.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_spi.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_spi_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo_errno.h;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_usart.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_usart_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cortex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_gpio.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hsem.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mdma.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_exti.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart.c;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_cortex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_cortex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_i2c.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_bus.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_rcc.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_crs.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_system.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_utils.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_flash.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_flash_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_gpio.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_hsem.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_hsem.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_dma.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_dmamux.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_mdma.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_pwr.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h;Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_exti.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_exti.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_spi.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_spi.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_spi_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo_errno.h;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_usart.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_usart_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h;Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h753xx.h;Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h;Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h;Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h;Drivers\CMSIS\Device\ST\STM32H7xx\Source\Templates\system_stm32h7xx.c;Drivers\CMSIS\Include\cachel1_armv7.h;Drivers\CMSIS\Include\cmsis_armcc.h;Drivers\CMSIS\Include\cmsis_armclang.h;Drivers\CMSIS\Include\cmsis_armclang_ltm.h;Drivers\CMSIS\Include\cmsis_compiler.h;Drivers\CMSIS\Include\cmsis_gcc.h;Drivers\CMSIS\Include\cmsis_iccarm.h;Drivers\CMSIS\Include\cmsis_version.h;Drivers\CMSIS\Include\core_armv81mml.h;Drivers\CMSIS\Include\core_armv8mbl.h;Drivers\CMSIS\Include\core_armv8mml.h;Drivers\CMSIS\Include\core_cm0.h;Drivers\CMSIS\Include\core_cm0plus.h;Drivers\CMSIS\Include\core_cm1.h;Drivers\CMSIS\Include\core_cm23.h;Drivers\CMSIS\Include\core_cm3.h;Drivers\CMSIS\Include\core_cm33.h;Drivers\CMSIS\Include\core_cm35p.h;Drivers\CMSIS\Include\core_cm4.h;Drivers\CMSIS\Include\core_cm55.h;Drivers\CMSIS\Include\core_cm7.h;Drivers\CMSIS\Include\core_cm85.h;Drivers\CMSIS\Include\core_sc000.h;Drivers\CMSIS\Include\core_sc300.h;Drivers\CMSIS\Include\core_starmc1.h;Drivers\CMSIS\Include\mpu_armv7.h;Drivers\CMSIS\Include\mpu_armv8.h;Drivers\CMSIS\Include\pac_armv81.h;Drivers\CMSIS\Include\pmu_armv8.h;Drivers\CMSIS\Include\tz_context.h;
++LibFiles=Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_eth.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_eth_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_bus.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_rcc.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_crs.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_system.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_utils.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_flash.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_flash_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_gpio.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_hsem.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_hsem.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_dma.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_dmamux.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_mdma.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_pwr.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_cortex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_cortex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h;Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_exti.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_exti.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_i2c.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_spi.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_spi.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_spi_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h;Drivers\BSP\Components\lan8742\lan8742.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ccp.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\chap_ms.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\chap-md5.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\chap-new.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\eap.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\eui64.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\fsm.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ipcp.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ipv6cp.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\lcp.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\magic.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\mppe.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ppp.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ppp_impl.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ppp_opts.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\pppapi.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\pppcrypt.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\pppdebug.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\pppoe.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\pppol2tp.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\pppos.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\upap.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\vj.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ecp.h;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo_errno.h;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_usart.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_usart_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_eth.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_eth_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_gpio.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hsem.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mdma.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cortex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_exti.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c;Drivers\BSP\Components\lan8742\lan8742.c;Middlewares\Third_Party\LwIP\src\netif\ppp\auth.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ccp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\chap_ms.c;Middlewares\Third_Party\LwIP\src\netif\ppp\chap-md5.c;Middlewares\Third_Party\LwIP\src\netif\ppp\chap-new.c;Middlewares\Third_Party\LwIP\src\netif\ppp\demand.c;Middlewares\Third_Party\LwIP\src\netif\ppp\eap.c;Middlewares\Third_Party\LwIP\src\netif\ppp\eui64.c;Middlewares\Third_Party\LwIP\src\netif\ppp\fsm.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ipcp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ipv6cp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\lcp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\magic.c;Middlewares\Third_Party\LwIP\src\netif\ppp\mppe.c;Middlewares\Third_Party\LwIP\src\netif\ppp\multilink.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ppp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppapi.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppcrypt.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppoe.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppol2tp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppos.c;Middlewares\Third_Party\LwIP\src\netif\ppp\upap.c;Middlewares\Third_Party\LwIP\src\netif\ppp\utils.c;Middlewares\Third_Party\LwIP\src\netif\ppp\vj.c;Middlewares\Third_Party\LwIP\src\netif\bridgeif.c;Middlewares\Third_Party\LwIP\src\netif\bridgeif_fdb.c;Middlewares\Third_Party\LwIP\src\netif\ethernet.c;Middlewares\Third_Party\LwIP\src\netif\lowpan6.c;Middlewares\Third_Party\LwIP\src\netif\lowpan6_ble.c;Middlewares\Third_Party\LwIP\src\netif\lowpan6_common.c;Middlewares\Third_Party\LwIP\src\netif\slipif.c;Middlewares\Third_Party\LwIP\src\netif\zepif.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ecp.c;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart.c;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_eth.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_eth_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_bus.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_rcc.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_crs.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_system.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_utils.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_flash.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_flash_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_gpio.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_hsem.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_hsem.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_dma.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_dmamux.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_mdma.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_pwr.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_cortex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_cortex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h;Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_exti.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_exti.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_i2c.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_spi.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_spi.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_spi_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h;Drivers\BSP\Components\lan8742\lan8742.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ccp.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\chap_ms.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\chap-md5.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\chap-new.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\eap.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\eui64.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\fsm.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ipcp.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ipv6cp.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\lcp.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\magic.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\mppe.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ppp.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ppp_impl.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ppp_opts.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\pppapi.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\pppcrypt.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\pppdebug.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\pppoe.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\pppol2tp.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\pppos.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\upap.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\vj.h;Middlewares\Third_Party\LwIP\src\include\netif\ppp\ecp.h;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo_errno.h;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_usart.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_usart_ex.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h;Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h;Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h753xx.h;Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h;Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h;Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h;Drivers\CMSIS\Device\ST\STM32H7xx\Source\Templates\system_stm32h7xx.c;Middlewares\Third_Party\LwIP\src\include\lwip\acd.h;Middlewares\Third_Party\LwIP\src\include\lwip\altcp.h;Middlewares\Third_Party\LwIP\src\include\lwip\altcp_tcp.h;Middlewares\Third_Party\LwIP\src\include\lwip\altcp_tls.h;Middlewares\Third_Party\LwIP\src\include\lwip\api.h;Middlewares\Third_Party\LwIP\src\include\lwip\arch.h;Middlewares\Third_Party\LwIP\src\include\lwip\autoip.h;Middlewares\Third_Party\LwIP\src\include\lwip\debug.h;Middlewares\Third_Party\LwIP\src\include\lwip\def.h;Middlewares\Third_Party\LwIP\src\include\lwip\dhcp.h;Middlewares\Third_Party\LwIP\src\include\lwip\dhcp6.h;Middlewares\Third_Party\LwIP\src\include\lwip\dns.h;Middlewares\Third_Party\LwIP\src\include\lwip\err.h;Middlewares\Third_Party\LwIP\src\include\lwip\errno.h;Middlewares\Third_Party\LwIP\src\include\lwip\etharp.h;Middlewares\Third_Party\LwIP\src\include\lwip\ethip6.h;Middlewares\Third_Party\LwIP\src\include\lwip\icmp.h;Middlewares\Third_Party\LwIP\src\include\lwip\icmp6.h;Middlewares\Third_Party\LwIP\src\include\lwip\if_api.h;Middlewares\Third_Party\LwIP\src\include\lwip\igmp.h;Middlewares\Third_Party\LwIP\src\include\lwip\inet.h;Middlewares\Third_Party\LwIP\src\include\lwip\inet_chksum.h;Middlewares\Third_Party\LwIP\src\include\lwip\init.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip4.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip4_addr.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip4_frag.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip6.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip6_addr.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip6_frag.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip6_zone.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip_addr.h;Middlewares\Third_Party\LwIP\src\include\lwip\mem.h;Middlewares\Third_Party\LwIP\src\include\lwip\memp.h;Middlewares\Third_Party\LwIP\src\include\lwip\mld6.h;Middlewares\Third_Party\LwIP\src\include\lwip\nd6.h;Middlewares\Third_Party\LwIP\src\include\lwip\netbuf.h;Middlewares\Third_Party\LwIP\src\include\lwip\netdb.h;Middlewares\Third_Party\LwIP\src\include\lwip\netif.h;Middlewares\Third_Party\LwIP\src\include\lwip\netifapi.h;Middlewares\Third_Party\LwIP\src\include\lwip\opt.h;Middlewares\Third_Party\LwIP\src\include\lwip\pbuf.h;Middlewares\Third_Party\LwIP\src\include\lwip\raw.h;Middlewares\Third_Party\LwIP\src\include\lwip\sio.h;Middlewares\Third_Party\LwIP\src\include\lwip\snmp.h;Middlewares\Third_Party\LwIP\src\include\lwip\sockets.h;Middlewares\Third_Party\LwIP\src\include\lwip\stats.h;Middlewares\Third_Party\LwIP\src\include\lwip\sys.h;Middlewares\Third_Party\LwIP\src\include\lwip\tcp.h;Middlewares\Third_Party\LwIP\src\include\lwip\tcpbase.h;Middlewares\Third_Party\LwIP\src\include\lwip\tcpip.h;Middlewares\Third_Party\LwIP\src\include\lwip\timeouts.h;Middlewares\Third_Party\LwIP\src\include\lwip\udp.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\altcp_proxyconnect.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\altcp_tls_mbedtls_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\fs.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\httpd.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\httpd_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\http_client.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\lwiperf.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mdns.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mdns_domain.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mdns_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mdns_out.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mdns_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mqtt.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mqtt_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mqtt_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\netbiosns.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\netbiosns_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\smtp.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\smtp_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmpv3.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_core.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_mib2.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_scalar.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_snmpv2_framework.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_snmpv2_usm.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_table.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_threadsync.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\sntp.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\sntp_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\tftp_client.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\tftp_common.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\tftp_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\tftp_server.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\altcp_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\api_msg.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\memp_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\memp_std.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\mem_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\nd6_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\raw_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\sockets_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\tcpip_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\tcp_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\acd.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\autoip.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\dhcp.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\dhcp6.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\dns.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\etharp.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\ethernet.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\iana.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\icmp.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\icmp6.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\ieee.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\igmp.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\ip.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\ip4.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\ip6.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\mld6.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\nd6.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\tcp.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\udp.h;Middlewares\Third_Party\LwIP\src\include\netif\bridgeif.h;Middlewares\Third_Party\LwIP\src\include\netif\bridgeif_opts.h;Middlewares\Third_Party\LwIP\src\include\netif\etharp.h;Middlewares\Third_Party\LwIP\src\include\netif\ethernet.h;Middlewares\Third_Party\LwIP\src\include\netif\ieee802154.h;Middlewares\Third_Party\LwIP\src\include\netif\lowpan6.h;Middlewares\Third_Party\LwIP\src\include\netif\lowpan6_ble.h;Middlewares\Third_Party\LwIP\src\include\netif\lowpan6_common.h;Middlewares\Third_Party\LwIP\src\include\netif\lowpan6_opts.h;Middlewares\Third_Party\LwIP\src\include\netif\slipif.h;Middlewares\Third_Party\LwIP\src\include\netif\zepif.h;Middlewares\Third_Party\LwIP\src\include\compat\posix\netdb.h;Middlewares\Third_Party\LwIP\src\include\compat\posix\arpa\inet.h;Middlewares\Third_Party\LwIP\src\include\compat\posix\net\if.h;Middlewares\Third_Party\LwIP\src\include\compat\posix\sys\socket.h;Middlewares\Third_Party\LwIP\src\include\compat\stdc\errno.h;Middlewares\Third_Party\LwIP\system\arch\bpstruct.h;Middlewares\Third_Party\LwIP\system\arch\cc.h;Middlewares\Third_Party\LwIP\system\arch\cpu.h;Middlewares\Third_Party\LwIP\system\arch\epstruct.h;Middlewares\Third_Party\LwIP\system\arch\init.h;Middlewares\Third_Party\LwIP\system\arch\lib.h;Middlewares\Third_Party\LwIP\system\arch\perf.h;Middlewares\Third_Party\LwIP\system\arch\sys_arch.h;Middlewares\Third_Party\LwIP\src\api\api_lib.c;Middlewares\Third_Party\LwIP\src\api\api_msg.c;Middlewares\Third_Party\LwIP\src\api\err.c;Middlewares\Third_Party\LwIP\src\api\if_api.c;Middlewares\Third_Party\LwIP\src\api\netbuf.c;Middlewares\Third_Party\LwIP\src\api\netdb.c;Middlewares\Third_Party\LwIP\src\api\netifapi.c;Middlewares\Third_Party\LwIP\src\api\sockets.c;Middlewares\Third_Party\LwIP\src\api\tcpip.c;Middlewares\Third_Party\LwIP\src\core\altcp.c;Middlewares\Third_Party\LwIP\src\core\altcp_alloc.c;Middlewares\Third_Party\LwIP\src\core\altcp_tcp.c;Middlewares\Third_Party\LwIP\src\core\def.c;Middlewares\Third_Party\LwIP\src\core\dns.c;Middlewares\Third_Party\LwIP\src\core\inet_chksum.c;Middlewares\Third_Party\LwIP\src\core\init.c;Middlewares\Third_Party\LwIP\src\core\ip.c;Middlewares\Third_Party\LwIP\src\core\mem.c;Middlewares\Third_Party\LwIP\src\core\memp.c;Middlewares\Third_Party\LwIP\src\core\netif.c;Middlewares\Third_Party\LwIP\src\core\pbuf.c;Middlewares\Third_Party\LwIP\src\core\raw.c;Middlewares\Third_Party\LwIP\src\core\stats.c;Middlewares\Third_Party\LwIP\src\core\sys.c;Middlewares\Third_Party\LwIP\src\core\tcp.c;Middlewares\Third_Party\LwIP\src\core\tcp_in.c;Middlewares\Third_Party\LwIP\src\core\tcp_out.c;Middlewares\Third_Party\LwIP\src\core\timeouts.c;Middlewares\Third_Party\LwIP\src\core\udp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\acd.c;Middlewares\Third_Party\LwIP\src\core\ipv4\autoip.c;Middlewares\Third_Party\LwIP\src\core\ipv4\dhcp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\etharp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\icmp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\igmp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\ip4.c;Middlewares\Third_Party\LwIP\src\core\ipv4\ip4_addr.c;Middlewares\Third_Party\LwIP\src\core\ipv4\ip4_frag.c;Middlewares\Third_Party\LwIP\src\core\ipv6\dhcp6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\ethip6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\icmp6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\inet6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\ip6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\ip6_addr.c;Middlewares\Third_Party\LwIP\src\core\ipv6\ip6_frag.c;Middlewares\Third_Party\LwIP\src\core\ipv6\mld6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\nd6.c;Middlewares\Third_Party\LwIP\src\apps\mqtt\mqtt.c;Middlewares\Third_Party\LwIP\src\include\lwip\acd.h;Middlewares\Third_Party\LwIP\src\include\lwip\altcp.h;Middlewares\Third_Party\LwIP\src\include\lwip\altcp_tcp.h;Middlewares\Third_Party\LwIP\src\include\lwip\altcp_tls.h;Middlewares\Third_Party\LwIP\src\include\lwip\api.h;Middlewares\Third_Party\LwIP\src\include\lwip\arch.h;Middlewares\Third_Party\LwIP\src\include\lwip\autoip.h;Middlewares\Third_Party\LwIP\src\include\lwip\debug.h;Middlewares\Third_Party\LwIP\src\include\lwip\def.h;Middlewares\Third_Party\LwIP\src\include\lwip\dhcp.h;Middlewares\Third_Party\LwIP\src\include\lwip\dhcp6.h;Middlewares\Third_Party\LwIP\src\include\lwip\dns.h;Middlewares\Third_Party\LwIP\src\include\lwip\err.h;Middlewares\Third_Party\LwIP\src\include\lwip\errno.h;Middlewares\Third_Party\LwIP\src\include\lwip\etharp.h;Middlewares\Third_Party\LwIP\src\include\lwip\ethip6.h;Middlewares\Third_Party\LwIP\src\include\lwip\icmp.h;Middlewares\Third_Party\LwIP\src\include\lwip\icmp6.h;Middlewares\Third_Party\LwIP\src\include\lwip\if_api.h;Middlewares\Third_Party\LwIP\src\include\lwip\igmp.h;Middlewares\Third_Party\LwIP\src\include\lwip\inet.h;Middlewares\Third_Party\LwIP\src\include\lwip\inet_chksum.h;Middlewares\Third_Party\LwIP\src\include\lwip\init.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip4.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip4_addr.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip4_frag.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip6.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip6_addr.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip6_frag.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip6_zone.h;Middlewares\Third_Party\LwIP\src\include\lwip\ip_addr.h;Middlewares\Third_Party\LwIP\src\include\lwip\mem.h;Middlewares\Third_Party\LwIP\src\include\lwip\memp.h;Middlewares\Third_Party\LwIP\src\include\lwip\mld6.h;Middlewares\Third_Party\LwIP\src\include\lwip\nd6.h;Middlewares\Third_Party\LwIP\src\include\lwip\netbuf.h;Middlewares\Third_Party\LwIP\src\include\lwip\netdb.h;Middlewares\Third_Party\LwIP\src\include\lwip\netif.h;Middlewares\Third_Party\LwIP\src\include\lwip\netifapi.h;Middlewares\Third_Party\LwIP\src\include\lwip\opt.h;Middlewares\Third_Party\LwIP\src\include\lwip\pbuf.h;Middlewares\Third_Party\LwIP\src\include\lwip\raw.h;Middlewares\Third_Party\LwIP\src\include\lwip\sio.h;Middlewares\Third_Party\LwIP\src\include\lwip\snmp.h;Middlewares\Third_Party\LwIP\src\include\lwip\sockets.h;Middlewares\Third_Party\LwIP\src\include\lwip\stats.h;Middlewares\Third_Party\LwIP\src\include\lwip\sys.h;Middlewares\Third_Party\LwIP\src\include\lwip\tcp.h;Middlewares\Third_Party\LwIP\src\include\lwip\tcpbase.h;Middlewares\Third_Party\LwIP\src\include\lwip\tcpip.h;Middlewares\Third_Party\LwIP\src\include\lwip\timeouts.h;Middlewares\Third_Party\LwIP\src\include\lwip\udp.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\altcp_proxyconnect.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\altcp_tls_mbedtls_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\fs.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\httpd.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\httpd_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\http_client.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\lwiperf.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mdns.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mdns_domain.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mdns_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mdns_out.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mdns_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mqtt.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mqtt_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\mqtt_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\netbiosns.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\netbiosns_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\smtp.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\smtp_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmpv3.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_core.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_mib2.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_scalar.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_snmpv2_framework.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_snmpv2_usm.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_table.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\snmp_threadsync.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\sntp.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\sntp_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\tftp_client.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\tftp_common.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\tftp_opts.h;Middlewares\Third_Party\LwIP\src\include\lwip\apps\tftp_server.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\altcp_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\api_msg.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\memp_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\memp_std.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\mem_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\nd6_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\raw_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\sockets_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\tcpip_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\priv\tcp_priv.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\acd.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\autoip.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\dhcp.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\dhcp6.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\dns.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\etharp.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\ethernet.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\iana.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\icmp.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\icmp6.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\ieee.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\igmp.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\ip.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\ip4.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\ip6.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\mld6.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\nd6.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\tcp.h;Middlewares\Third_Party\LwIP\src\include\lwip\prot\udp.h;Middlewares\Third_Party\LwIP\src\include\netif\bridgeif.h;Middlewares\Third_Party\LwIP\src\include\netif\bridgeif_opts.h;Middlewares\Third_Party\LwIP\src\include\netif\etharp.h;Middlewares\Third_Party\LwIP\src\include\netif\ethernet.h;Middlewares\Third_Party\LwIP\src\include\netif\ieee802154.h;Middlewares\Third_Party\LwIP\src\include\netif\lowpan6.h;Middlewares\Third_Party\LwIP\src\include\netif\lowpan6_ble.h;Middlewares\Third_Party\LwIP\src\include\netif\lowpan6_common.h;Middlewares\Third_Party\LwIP\src\include\netif\lowpan6_opts.h;Middlewares\Third_Party\LwIP\src\include\netif\slipif.h;Middlewares\Third_Party\LwIP\src\include\netif\zepif.h;Middlewares\Third_Party\LwIP\src\include\compat\posix\netdb.h;Middlewares\Third_Party\LwIP\src\include\compat\posix\arpa\inet.h;Middlewares\Third_Party\LwIP\src\include\compat\posix\net\if.h;Middlewares\Third_Party\LwIP\src\include\compat\posix\sys\socket.h;Middlewares\Third_Party\LwIP\src\include\compat\stdc\errno.h;Middlewares\Third_Party\LwIP\system\arch\bpstruct.h;Middlewares\Third_Party\LwIP\system\arch\cc.h;Middlewares\Third_Party\LwIP\system\arch\cpu.h;Middlewares\Third_Party\LwIP\system\arch\epstruct.h;Middlewares\Third_Party\LwIP\system\arch\init.h;Middlewares\Third_Party\LwIP\system\arch\lib.h;Middlewares\Third_Party\LwIP\system\arch\perf.h;Middlewares\Third_Party\LwIP\system\arch\sys_arch.h;Drivers\CMSIS\Include\cachel1_armv7.h;Drivers\CMSIS\Include\cmsis_armcc.h;Drivers\CMSIS\Include\cmsis_armclang.h;Drivers\CMSIS\Include\cmsis_armclang_ltm.h;Drivers\CMSIS\Include\cmsis_compiler.h;Drivers\CMSIS\Include\cmsis_gcc.h;Drivers\CMSIS\Include\cmsis_iccarm.h;Drivers\CMSIS\Include\cmsis_version.h;Drivers\CMSIS\Include\core_armv81mml.h;Drivers\CMSIS\Include\core_armv8mbl.h;Drivers\CMSIS\Include\core_armv8mml.h;Drivers\CMSIS\Include\core_cm0.h;Drivers\CMSIS\Include\core_cm0plus.h;Drivers\CMSIS\Include\core_cm1.h;Drivers\CMSIS\Include\core_cm23.h;Drivers\CMSIS\Include\core_cm3.h;Drivers\CMSIS\Include\core_cm33.h;Drivers\CMSIS\Include\core_cm35p.h;Drivers\CMSIS\Include\core_cm4.h;Drivers\CMSIS\Include\core_cm55.h;Drivers\CMSIS\Include\core_cm7.h;Drivers\CMSIS\Include\core_cm85.h;Drivers\CMSIS\Include\core_sc000.h;Drivers\CMSIS\Include\core_sc300.h;Drivers\CMSIS\Include\core_starmc1.h;Drivers\CMSIS\Include\mpu_armv7.h;Drivers\CMSIS\Include\mpu_armv8.h;Drivers\CMSIS\Include\pac_armv81.h;Drivers\CMSIS\Include\pmu_armv8.h;Drivers\CMSIS\Include\tz_context.h;
+ 
+ [PreviousUsedCMakes]
+-SourceFiles=Core\Src\main.c;Core\Src\stm32h7xx_it.c;Core\Src\stm32h7xx_hal_msp.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cortex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_gpio.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hsem.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mdma.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_exti.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart.c;Drivers\CMSIS\Device\ST\STM32H7xx\Source\Templates\system_stm32h7xx.c;Core\Src\system_stm32h7xx.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cortex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_gpio.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hsem.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mdma.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_exti.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart.c;Drivers\CMSIS\Device\ST\STM32H7xx\Source\Templates\system_stm32h7xx.c;Core\Src\system_stm32h7xx.c;;;
+-HeaderPath=Drivers\STM32H7xx_HAL_Driver\Inc;Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;Drivers\BSP\STM32H7xx_Nucleo;Drivers\CMSIS\Device\ST\STM32H7xx\Include;Drivers\CMSIS\Include;Core\Inc;
++SourceFiles=Core\Src\main.c;LWIP\App\lwip.c;LWIP\Target\ethernetif.c;Core\Src\stm32h7xx_it.c;Core\Src\stm32h7xx_hal_msp.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_eth.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_eth_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_gpio.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hsem.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mdma.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cortex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_exti.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c;Drivers\BSP\Components\lan8742\lan8742.c;Middlewares\Third_Party\LwIP\src\netif\ppp\auth.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ccp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\chap_ms.c;Middlewares\Third_Party\LwIP\src\netif\ppp\chap-md5.c;Middlewares\Third_Party\LwIP\src\netif\ppp\chap-new.c;Middlewares\Third_Party\LwIP\src\netif\ppp\demand.c;Middlewares\Third_Party\LwIP\src\netif\ppp\eap.c;Middlewares\Third_Party\LwIP\src\netif\ppp\eui64.c;Middlewares\Third_Party\LwIP\src\netif\ppp\fsm.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ipcp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ipv6cp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\lcp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\magic.c;Middlewares\Third_Party\LwIP\src\netif\ppp\mppe.c;Middlewares\Third_Party\LwIP\src\netif\ppp\multilink.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ppp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppapi.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppcrypt.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppoe.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppol2tp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppos.c;Middlewares\Third_Party\LwIP\src\netif\ppp\upap.c;Middlewares\Third_Party\LwIP\src\netif\ppp\utils.c;Middlewares\Third_Party\LwIP\src\netif\ppp\vj.c;Middlewares\Third_Party\LwIP\src\netif\bridgeif.c;Middlewares\Third_Party\LwIP\src\netif\bridgeif_fdb.c;Middlewares\Third_Party\LwIP\src\netif\ethernet.c;Middlewares\Third_Party\LwIP\src\netif\lowpan6.c;Middlewares\Third_Party\LwIP\src\netif\lowpan6_ble.c;Middlewares\Third_Party\LwIP\src\netif\lowpan6_common.c;Middlewares\Third_Party\LwIP\src\netif\slipif.c;Middlewares\Third_Party\LwIP\src\netif\zepif.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ecp.c;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart.c;Drivers\CMSIS\Device\ST\STM32H7xx\Source\Templates\system_stm32h7xx.c;Middlewares\Third_Party\LwIP\src\api\api_lib.c;Middlewares\Third_Party\LwIP\src\api\api_msg.c;Middlewares\Third_Party\LwIP\src\api\err.c;Middlewares\Third_Party\LwIP\src\api\if_api.c;Middlewares\Third_Party\LwIP\src\api\netbuf.c;Middlewares\Third_Party\LwIP\src\api\netdb.c;Middlewares\Third_Party\LwIP\src\api\netifapi.c;Middlewares\Third_Party\LwIP\src\api\sockets.c;Middlewares\Third_Party\LwIP\src\api\tcpip.c;Middlewares\Third_Party\LwIP\src\core\altcp.c;Middlewares\Third_Party\LwIP\src\core\altcp_alloc.c;Middlewares\Third_Party\LwIP\src\core\altcp_tcp.c;Middlewares\Third_Party\LwIP\src\core\def.c;Middlewares\Third_Party\LwIP\src\core\dns.c;Middlewares\Third_Party\LwIP\src\core\inet_chksum.c;Middlewares\Third_Party\LwIP\src\core\init.c;Middlewares\Third_Party\LwIP\src\core\ip.c;Middlewares\Third_Party\LwIP\src\core\mem.c;Middlewares\Third_Party\LwIP\src\core\memp.c;Middlewares\Third_Party\LwIP\src\core\netif.c;Middlewares\Third_Party\LwIP\src\core\pbuf.c;Middlewares\Third_Party\LwIP\src\core\raw.c;Middlewares\Third_Party\LwIP\src\core\stats.c;Middlewares\Third_Party\LwIP\src\core\sys.c;Middlewares\Third_Party\LwIP\src\core\tcp.c;Middlewares\Third_Party\LwIP\src\core\tcp_in.c;Middlewares\Third_Party\LwIP\src\core\tcp_out.c;Middlewares\Third_Party\LwIP\src\core\timeouts.c;Middlewares\Third_Party\LwIP\src\core\udp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\acd.c;Middlewares\Third_Party\LwIP\src\core\ipv4\autoip.c;Middlewares\Third_Party\LwIP\src\core\ipv4\dhcp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\etharp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\icmp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\igmp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\ip4.c;Middlewares\Third_Party\LwIP\src\core\ipv4\ip4_addr.c;Middlewares\Third_Party\LwIP\src\core\ipv4\ip4_frag.c;Middlewares\Third_Party\LwIP\src\core\ipv6\dhcp6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\ethip6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\icmp6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\inet6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\ip6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\ip6_addr.c;Middlewares\Third_Party\LwIP\src\core\ipv6\ip6_frag.c;Middlewares\Third_Party\LwIP\src\core\ipv6\mld6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\nd6.c;Middlewares\Third_Party\LwIP\src\apps\mqtt\mqtt.c;Core\Src\system_stm32h7xx.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_eth.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_eth_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_gpio.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hsem.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mdma.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cortex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_exti.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c;Drivers\BSP\Components\lan8742\lan8742.c;Middlewares\Third_Party\LwIP\src\netif\ppp\auth.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ccp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\chap_ms.c;Middlewares\Third_Party\LwIP\src\netif\ppp\chap-md5.c;Middlewares\Third_Party\LwIP\src\netif\ppp\chap-new.c;Middlewares\Third_Party\LwIP\src\netif\ppp\demand.c;Middlewares\Third_Party\LwIP\src\netif\ppp\eap.c;Middlewares\Third_Party\LwIP\src\netif\ppp\eui64.c;Middlewares\Third_Party\LwIP\src\netif\ppp\fsm.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ipcp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ipv6cp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\lcp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\magic.c;Middlewares\Third_Party\LwIP\src\netif\ppp\mppe.c;Middlewares\Third_Party\LwIP\src\netif\ppp\multilink.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ppp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppapi.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppcrypt.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppoe.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppol2tp.c;Middlewares\Third_Party\LwIP\src\netif\ppp\pppos.c;Middlewares\Third_Party\LwIP\src\netif\ppp\upap.c;Middlewares\Third_Party\LwIP\src\netif\ppp\utils.c;Middlewares\Third_Party\LwIP\src\netif\ppp\vj.c;Middlewares\Third_Party\LwIP\src\netif\bridgeif.c;Middlewares\Third_Party\LwIP\src\netif\bridgeif_fdb.c;Middlewares\Third_Party\LwIP\src\netif\ethernet.c;Middlewares\Third_Party\LwIP\src\netif\lowpan6.c;Middlewares\Third_Party\LwIP\src\netif\lowpan6_ble.c;Middlewares\Third_Party\LwIP\src\netif\lowpan6_common.c;Middlewares\Third_Party\LwIP\src\netif\slipif.c;Middlewares\Third_Party\LwIP\src\netif\zepif.c;Middlewares\Third_Party\LwIP\src\netif\ppp\ecp.c;Drivers\BSP\STM32H7xx_Nucleo\stm32h7xx_nucleo.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart_ex.c;Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart.c;Drivers\CMSIS\Device\ST\STM32H7xx\Source\Templates\system_stm32h7xx.c;Middlewares\Third_Party\LwIP\src\api\api_lib.c;Middlewares\Third_Party\LwIP\src\api\api_msg.c;Middlewares\Third_Party\LwIP\src\api\err.c;Middlewares\Third_Party\LwIP\src\api\if_api.c;Middlewares\Third_Party\LwIP\src\api\netbuf.c;Middlewares\Third_Party\LwIP\src\api\netdb.c;Middlewares\Third_Party\LwIP\src\api\netifapi.c;Middlewares\Third_Party\LwIP\src\api\sockets.c;Middlewares\Third_Party\LwIP\src\api\tcpip.c;Middlewares\Third_Party\LwIP\src\core\altcp.c;Middlewares\Third_Party\LwIP\src\core\altcp_alloc.c;Middlewares\Third_Party\LwIP\src\core\altcp_tcp.c;Middlewares\Third_Party\LwIP\src\core\def.c;Middlewares\Third_Party\LwIP\src\core\dns.c;Middlewares\Third_Party\LwIP\src\core\inet_chksum.c;Middlewares\Third_Party\LwIP\src\core\init.c;Middlewares\Third_Party\LwIP\src\core\ip.c;Middlewares\Third_Party\LwIP\src\core\mem.c;Middlewares\Third_Party\LwIP\src\core\memp.c;Middlewares\Third_Party\LwIP\src\core\netif.c;Middlewares\Third_Party\LwIP\src\core\pbuf.c;Middlewares\Third_Party\LwIP\src\core\raw.c;Middlewares\Third_Party\LwIP\src\core\stats.c;Middlewares\Third_Party\LwIP\src\core\sys.c;Middlewares\Third_Party\LwIP\src\core\tcp.c;Middlewares\Third_Party\LwIP\src\core\tcp_in.c;Middlewares\Third_Party\LwIP\src\core\tcp_out.c;Middlewares\Third_Party\LwIP\src\core\timeouts.c;Middlewares\Third_Party\LwIP\src\core\udp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\acd.c;Middlewares\Third_Party\LwIP\src\core\ipv4\autoip.c;Middlewares\Third_Party\LwIP\src\core\ipv4\dhcp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\etharp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\icmp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\igmp.c;Middlewares\Third_Party\LwIP\src\core\ipv4\ip4.c;Middlewares\Third_Party\LwIP\src\core\ipv4\ip4_addr.c;Middlewares\Third_Party\LwIP\src\core\ipv4\ip4_frag.c;Middlewares\Third_Party\LwIP\src\core\ipv6\dhcp6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\ethip6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\icmp6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\inet6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\ip6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\ip6_addr.c;Middlewares\Third_Party\LwIP\src\core\ipv6\ip6_frag.c;Middlewares\Third_Party\LwIP\src\core\ipv6\mld6.c;Middlewares\Third_Party\LwIP\src\core\ipv6\nd6.c;Middlewares\Third_Party\LwIP\src\apps\mqtt\mqtt.c;Core\Src\system_stm32h7xx.c;;;
++HeaderPath=Middlewares\Third_Party\LwIP\src\include;Middlewares\Third_Party\LwIP\system;Drivers\STM32H7xx_HAL_Driver\Inc;Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;Drivers\BSP\Components\lan8742;Middlewares\Third_Party\LwIP\src\include\netif\ppp;Drivers\BSP\STM32H7xx_Nucleo;Drivers\CMSIS\Device\ST\STM32H7xx\Include;Middlewares\Third_Party\LwIP\src\include\lwip;Middlewares\Third_Party\LwIP\src\include\lwip\apps;Middlewares\Third_Party\LwIP\src\include\lwip\priv;Middlewares\Third_Party\LwIP\src\include\lwip\prot;Middlewares\Third_Party\LwIP\src\include\netif;Middlewares\Third_Party\LwIP\src\include\compat\posix;Middlewares\Third_Party\LwIP\src\include\compat\posix\arpa;Middlewares\Third_Party\LwIP\src\include\compat\posix\net;Middlewares\Third_Party\LwIP\src\include\compat\posix\sys;Middlewares\Third_Party\LwIP\src\include\compat\stdc;Middlewares\Third_Party\LwIP\system\arch;Drivers\CMSIS\Include;LWIP\App;LWIP\Target;Core\Inc;
+ CDefines=USE_PWR_LDO_SUPPLY;USE_HAL_DRIVER;STM32H753xx;USE_HAL_DRIVER;USE_HAL_DRIVER;
+ 
+ [PreviousGenFiles]
+ AdvancedFolderStructure=true
+-HeaderFileListSize=4
+-HeaderFiles#0=..\Core\Inc\stm32h7xx_nucleo_conf.h
+-HeaderFiles#1=..\Core\Inc\stm32h7xx_it.h
+-HeaderFiles#2=..\Core\Inc\stm32h7xx_hal_conf.h
+-HeaderFiles#3=..\Core\Inc\main.h
+-HeaderFolderListSize=1
+-HeaderPath#0=..\Core\Inc
++HeaderFileListSize=7
++HeaderFiles#0=..\LWIP\App\lwip.h
++HeaderFiles#1=..\LWIP\Target\lwipopts.h
++HeaderFiles#2=..\LWIP\Target\ethernetif.h
++HeaderFiles#3=..\Core\Inc\stm32h7xx_nucleo_conf.h
++HeaderFiles#4=..\Core\Inc\stm32h7xx_it.h
++HeaderFiles#5=..\Core\Inc\stm32h7xx_hal_conf.h
++HeaderFiles#6=..\Core\Inc\main.h
++HeaderFolderListSize=3
++HeaderPath#0=..\LWIP\App
++HeaderPath#1=..\LWIP\Target
++HeaderPath#2=..\Core\Inc
+ HeaderFiles=;
+-SourceFileListSize=3
+-SourceFiles#0=..\Core\Src\stm32h7xx_it.c
+-SourceFiles#1=..\Core\Src\stm32h7xx_hal_msp.c
+-SourceFiles#2=..\Core\Src\main.c
+-SourceFolderListSize=1
+-SourcePath#0=..\Core\Src
++SourceFileListSize=5
++SourceFiles#0=..\LWIP\App\lwip.c
++SourceFiles#1=..\LWIP\Target\ethernetif.c
++SourceFiles#2=..\Core\Src\stm32h7xx_it.c
++SourceFiles#3=..\Core\Src\stm32h7xx_hal_msp.c
++SourceFiles#4=..\Core\Src\main.c
++SourceFolderListSize=3
++SourcePath#0=..\LWIP\App
++SourcePath#1=..\LWIP\Target
++SourcePath#2=..\Core\Src
+ SourceFiles=;
+ 
+diff --git a/Core/Inc/stm32h7xx_hal_conf.h b/Core/Inc/stm32h7xx_hal_conf.h
+index 1a7efff..9293d6f 100644
+--- a/Core/Inc/stm32h7xx_hal_conf.h
++++ b/Core/Inc/stm32h7xx_hal_conf.h
+@@ -45,7 +45,7 @@
+ /* #define HAL_DAC_MODULE_ENABLED   */
+ /* #define HAL_DCMI_MODULE_ENABLED   */
+ /* #define HAL_DMA2D_MODULE_ENABLED   */
+-/* #define HAL_ETH_MODULE_ENABLED   */
++#define HAL_ETH_MODULE_ENABLED
+ /* #define HAL_ETH_LEGACY_MODULE_ENABLED   */
+ /* #define HAL_NAND_MODULE_ENABLED   */
+ /* #define HAL_NOR_MODULE_ENABLED   */
+diff --git a/Core/Src/main.c b/Core/Src/main.c
+index aef22d5..78883eb 100644
+--- a/Core/Src/main.c
++++ b/Core/Src/main.c
+@@ -18,6 +18,9 @@
+ /* USER CODE END Header */
+ /* Includes ------------------------------------------------------------------*/
+ #include "main.h"
++#include "lwip.h"
++#include "lwip/ip4_addr.h"
++extern struct netif gnetif;
+ 
+ /* Private includes ----------------------------------------------------------*/
+ /* USER CODE BEGIN Includes */
+@@ -150,7 +153,7 @@ int main(void)
+   MX_GPIO_Init();
+   MX_I2C1_Init();
+   MX_SPI1_Init();
+-
++  MX_LWIP_Init();
+   /* USER CODE BEGIN 2 */
+   
+   bmi270_rslt = bmi270_stm32_interface_init(&bmi270_dev);
+@@ -202,7 +205,9 @@ int main(void)
+     /* USER CODE END WHILE */
+ 
+     /* USER CODE BEGIN 3 */
+-
++  
++    MX_LWIP_Process();
++  
+     static uint8_t rxByte;
+     static char rxBuf[32];
+     static uint32_t rxIndex = 0;
+@@ -355,7 +360,31 @@ int main(void)
+                   HAL_MAX_DELAY
+               );
+           }
+-          
++          else if (strcmp(rxBuf, "ETH_STATUS") == 0)
++          {
++              char msg[64];
++
++              if (gnetif.ip_addr.addr != 0)
++              {
++                  snprintf(
++                      msg,
++                      sizeof(msg),
++                      "ETH_IP %s\r\n",
++                      ip4addr_ntoa(netif_ip4_addr(&gnetif))
++                  );
++              }
++              else
++              {
++                  snprintf(msg, sizeof(msg), "ETH_NO_IP\r\n");
++              }
++
++              HAL_UART_Transmit(
++                  &hcom_uart[COM1],
++                  (uint8_t *)msg,
++                  strlen(msg),
++                  HAL_MAX_DELAY
++              );
++          }          
+           rxIndex = 0;
+         }
+       }
+diff --git a/cmake/stm32cubemx/CMakeLists.txt b/cmake/stm32cubemx/CMakeLists.txt
+index acb2767..553cc99 100644
+--- a/cmake/stm32cubemx/CMakeLists.txt
++++ b/cmake/stm32cubemx/CMakeLists.txt
+@@ -11,30 +11,48 @@ set(MX_Defines_Syms
+ 
+ # STM32CubeMX generated include paths
+ set(MX_Include_Dirs
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../LWIP/App
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../LWIP/Target
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Inc
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/include
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/system
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Inc
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/BSP/Components/lan8742
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/include/netif/ppp
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/BSP/STM32H7xx_Nucleo
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/CMSIS/Device/ST/STM32H7xx/Include
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/include/lwip
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/include/lwip/apps
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/include/lwip/priv
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/include/lwip/prot
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/include/netif
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/include/compat/posix
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/include/compat/posix/net
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/include/compat/stdc
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/system/arch
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/CMSIS/Include
+ )
+ 
+ # STM32CubeMX generated application sources
+-set(MX_Application_Src
++set(MX_Application_Src
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../LWIP/App/lwip.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../LWIP/Target/ethernetif.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/main.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/stm32h7xx_it.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/stm32h7xx_hal_msp.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/sysmem.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/syscalls.c
+-    ${CMAKE_CURRENT_SOURCE_DIR}/../../startup_stm32h753xx.s
+-)
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../startup_stm32h753xx.s
++)
+ 
+ # STM32 HAL/LL Drivers
+-set(STM32_Drivers_Src
++set(STM32_Drivers_Src
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/system_stm32h7xx.c
+-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c
+-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c
+-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_eth.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_eth_ex.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c
+@@ -46,7 +64,10 @@ set(STM32_Drivers_Src
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c
+@@ -56,12 +77,97 @@ set(STM32_Drivers_Src
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_usart_ex.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/BSP/Components/lan8742/lan8742.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c
+-)
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/BSP/Components/lan8742/lan8742.c
++)
+ 
+ # Drivers Midllewares
+ 
+ 
++set(LwIP_Src
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/auth.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/ccp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/chap_ms.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/chap-md5.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/chap-new.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/demand.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/eap.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/eui64.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/fsm.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/ipcp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/ipv6cp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/lcp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/magic.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/mppe.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/multilink.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/ppp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/pppapi.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/pppcrypt.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/pppoe.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/pppol2tp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/pppos.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/upap.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/utils.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/vj.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/bridgeif.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/bridgeif_fdb.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ethernet.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/lowpan6.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/lowpan6_ble.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/lowpan6_common.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/slipif.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/zepif.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/netif/ppp/ecp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/api/api_lib.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/api/api_msg.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/api/err.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/api/if_api.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/api/netbuf.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/api/netdb.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/api/netifapi.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/api/sockets.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/api/tcpip.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/altcp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/altcp_alloc.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/altcp_tcp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/def.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/dns.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/inet_chksum.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/init.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ip.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/mem.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/memp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/netif.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/pbuf.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/raw.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/stats.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/sys.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/tcp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/tcp_in.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/tcp_out.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/timeouts.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/udp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv4/acd.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv4/autoip.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv4/dhcp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv4/etharp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv4/icmp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv4/igmp.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv4/ip4.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv4/ip4_addr.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv4/ip4_frag.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv6/dhcp6.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv6/ethip6.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv6/icmp6.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv6/inet6.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv6/ip6.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv6/ip6_addr.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv6/ip6_frag.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv6/mld6.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/core/ipv6/nd6.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../Middlewares/Third_Party/LwIP/src/apps/mqtt/mqtt.c
++)
+ 
+ # Link directories setup
+ set(MX_LINK_DIRS
+@@ -71,7 +177,7 @@ set(MX_LINK_DIRS
+ set(MX_LINK_LIBS 
+     STM32_Drivers
+     ${TOOLCHAIN_LINK_LIBRARIES}
+-    
++    LwIP	
+ )
+ # Interface library for includes and symbols
+ add_library(stm32cubemx INTERFACE)
+@@ -83,6 +189,11 @@ add_library(STM32_Drivers OBJECT)
+ target_sources(STM32_Drivers PRIVATE ${STM32_Drivers_Src})
+ target_link_libraries(STM32_Drivers PUBLIC stm32cubemx)
+ 
++
++# Create LwIP static library
++add_library(LwIP OBJECT)
++target_sources(LwIP PRIVATE ${LwIP_Src})
++target_link_libraries(LwIP PUBLIC stm32cubemx)
+ 
+ # Add STM32CubeMX generated application sources to the project
+ target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${MX_Application_Src})
+diff --git a/p.bat b/p.bat
+index c56c876..bb296e5 100644
+--- a/p.bat
++++ b/p.bat
+@@ -1,3 +1,2 @@
+ @echo off
+-python -c "import serial; s=serial.Serial('COM7',115200,timeout=2); s.write(b'I2C_STATUS\r'); print(s.readline().decode(errors='replace').strip()); s.write(b'SPI_STATUS\r'); print(s.readline().decode(errors='replace').strip()); s.close()"
+-pause
+\ No newline at end of file
++python -c "import serial; s=serial.Serial('COM7',115200,timeout=2); s.write(b'I2C_STATUS\r'); print(s.readline().decode(errors='replace').strip()); s.write(b'SPI_STATUS\r'); print(s.readline().decode(errors='replace').strip()); s.write(b'ETH_STATUS\r'); print(s.readline().decode(errors='replace').strip()); s.close()"
+diff --git a/surface-streamer-stm32.ioc b/surface-streamer-stm32.ioc
+index 8298c6c..4d55e65 100644
+--- a/surface-streamer-stm32.ioc
++++ b/surface-streamer-stm32.ioc
+@@ -8,46 +8,72 @@ CORTEX_M7.CPU_ICache=Disabled
+ CORTEX_M7.IPParameters=CPU_ICache,CPU_DCache,MPU_Control,default_mode_Activation
+ CORTEX_M7.MPU_Control=MPU_PRIVILEGED_DEFAULT
+ CORTEX_M7.default_mode_Activation=1
++ETH.IPParameters=MediaInterface
++ETH.MediaInterface=HAL_ETH_RMII_MODE
+ File.Version=6
+ GPIO.groupedBy=Group By Peripherals
+ KeepUserPlacement=false
++LWIP.BSP.number=1
++LWIP.Version=v2.2.1_Cube
++LWIP0.BSP.STBoard=false
++LWIP0.BSP.api=BSP_COMPONENT_DRIVER
++LWIP0.BSP.component=LAN8742
++LWIP0.BSP.condition=
++LWIP0.BSP.instance=LAN8742
++LWIP0.BSP.ip=
++LWIP0.BSP.mode=
++LWIP0.BSP.name=Driver_PHY
++LWIP0.BSP.semaphore=S_LAN8742
++LWIP0.BSP.solution=LAN8742
+ MMTAppRegionsCount=0
+ MMTConfigApplied=false
+ MMTSectionSuffix=
+ Mcu.CPN=STM32H753ZIT6
+ Mcu.Family=STM32H7
+ Mcu.IP0=CORTEX_M7
+-Mcu.IP1=I2C1
+-Mcu.IP2=MEMORYMAP
+-Mcu.IP3=NUCLEO-H753ZI
+-Mcu.IP4=NVIC
+-Mcu.IP5=RCC
+-Mcu.IP6=SPI1
+-Mcu.IP7=SYS
+-Mcu.IPNb=9
++Mcu.IP1=ETH
++Mcu.IP2=I2C1
++Mcu.IP3=LWIP
++Mcu.IP4=MEMORYMAP
++Mcu.IP5=NUCLEO-H753ZI
++Mcu.IP6=NVIC
++Mcu.IP7=RCC
++Mcu.IP8=SPI1
++Mcu.IP9=SYS
++Mcu.IPNb=11
+ Mcu.Name=STM32H753ZITx
+ Mcu.Package=LQFP144
+ Mcu.Pin0=PC13
+ Mcu.Pin1=PC14-OSC32_IN (OSC32_IN)
+-Mcu.Pin10=PB14
+-Mcu.Pin11=PD8
+-Mcu.Pin12=PD9
+-Mcu.Pin13=PB5
+-Mcu.Pin14=PB8
+-Mcu.Pin15=PB9
+-Mcu.Pin16=PE1
+-Mcu.Pin17=VP_SYS_VS_Systick
+-Mcu.Pin18=VP_MEMORYMAP_VS_MEMORYMAP
+-Mcu.Pin19=VP_NUCLEO-H753ZI_VS_BSP_COMMON
++Mcu.Pin10=PA5
++Mcu.Pin11=PA6
++Mcu.Pin12=PA7
++Mcu.Pin13=PC4
++Mcu.Pin14=PC5
++Mcu.Pin15=PB0
++Mcu.Pin16=PB11
++Mcu.Pin17=PB12
++Mcu.Pin18=PB13
++Mcu.Pin19=PB14
+ Mcu.Pin2=PC15-OSC32_OUT (OSC32_OUT)
++Mcu.Pin20=PD8
++Mcu.Pin21=PD9
++Mcu.Pin22=PB5
++Mcu.Pin23=PB8
++Mcu.Pin24=PB9
++Mcu.Pin25=PE1
++Mcu.Pin26=VP_LWIP_VS_Enabled
++Mcu.Pin27=VP_SYS_VS_Systick
++Mcu.Pin28=VP_MEMORYMAP_VS_MEMORYMAP
++Mcu.Pin29=VP_NUCLEO-H753ZI_VS_BSP_COMMON
+ Mcu.Pin3=PF3
+ Mcu.Pin4=PH0-OSC_IN (PH0)
+ Mcu.Pin5=PH1-OSC_OUT (PH1)
+-Mcu.Pin6=PA4
+-Mcu.Pin7=PA5
+-Mcu.Pin8=PA6
+-Mcu.Pin9=PB0
+-Mcu.PinsNb=20
++Mcu.Pin6=PC1
++Mcu.Pin7=PA1
++Mcu.Pin8=PA2
++Mcu.Pin9=PA4
++Mcu.PinsNb=30
+ Mcu.ThirdPartyNb=0
+ Mcu.UserConstants=
+ Mcu.UserName=STM32H753ZITx
+@@ -71,6 +97,10 @@ NVIC.PriorityGroup=NVIC_PRIORITYGROUP_4
+ NVIC.SVCall_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:false
+ NVIC.SysTick_IRQn=true\:0\:0\:false\:false\:true\:false\:true\:false
+ NVIC.UsageFault_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:false
++PA1.Mode=RMII
++PA1.Signal=ETH_REF_CLK
++PA2.Mode=RMII
++PA2.Signal=ETH_MDIO
+ PA4.GPIOParameters=PinState
+ PA4.Locked=true
+ PA4.PinState=GPIO_PIN_SET
+@@ -81,7 +111,15 @@ PA5.Signal=SPI1_SCK
+ PA6.Locked=true
+ PA6.Mode=Full_Duplex_Master
+ PA6.Signal=SPI1_MISO
++PA7.Mode=RMII
++PA7.Signal=ETH_CRS_DV
+ PB0.Locked=true
++PB11.Mode=RMII
++PB11.Signal=ETH_TX_EN
++PB12.Mode=RMII
++PB12.Signal=ETH_TXD0
++PB13.Mode=RMII
++PB13.Signal=ETH_TXD1
+ PB14.Locked=true
+ PB5.Locked=true
+ PB5.Mode=Full_Duplex_Master
+@@ -96,11 +134,17 @@ PB9.GPIO_Pu=GPIO_PULLUP
+ PB9.Locked=true
+ PB9.Mode=I2C
+ PB9.Signal=I2C1_SDA
++PC1.Mode=RMII
++PC1.Signal=ETH_MDC
+ PC13.Locked=true
+ PC14-OSC32_IN\ (OSC32_IN).Locked=true
+ PC14-OSC32_IN\ (OSC32_IN).Signal=RCC_OSC32_IN
+ PC15-OSC32_OUT\ (OSC32_OUT).Locked=true
+ PC15-OSC32_OUT\ (OSC32_OUT).Signal=RCC_OSC32_OUT
++PC4.Mode=RMII
++PC4.Signal=ETH_RXD0
++PC5.Mode=RMII
++PC5.Signal=ETH_RXD1
+ PD8.Locked=true
+ PD8.Signal=USART3_TX
+ PD9.Locked=true
+@@ -228,6 +272,8 @@ SPI1.Direction=SPI_DIRECTION_2LINES
+ SPI1.IPParameters=VirtualType,Mode,Direction,CalculateBaudRate,DataSize,BaudRatePrescaler
+ SPI1.Mode=SPI_MODE_MASTER
+ SPI1.VirtualType=VM_MASTER
++VP_LWIP_VS_Enabled.Mode=Enabled
++VP_LWIP_VS_Enabled.Signal=LWIP_VS_Enabled
+ VP_MEMORYMAP_VS_MEMORYMAP.Mode=CurAppReg
+ VP_MEMORYMAP_VS_MEMORYMAP.Signal=MEMORYMAP_VS_MEMORYMAP
+ VP_NUCLEO-H753ZI_VS_BSP_COMMON.Mode=COMMON
