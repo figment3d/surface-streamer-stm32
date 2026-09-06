@@ -27,6 +27,7 @@
 #include "VL53L1X_api.h"
 #include "bmi270_port.h"
 #include "lwip/ip4_addr.h"
+#include "lwip/udp.h"
 extern struct netif gnetif;
 
 /* USER CODE END Includes */
@@ -49,16 +50,14 @@ extern struct netif gnetif;
 /* Private variables ---------------------------------------------------------*/
 
 COM_InitTypeDef BspCOMInit;
-
 I2C_HandleTypeDef hi2c1;
-
 SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
 uint8_t vl53_status = 0;
-struct bmi2_dev bmi270_dev;
 int8_t bmi270_rslt;
-
+struct bmi2_dev bmi270_dev;
+static struct udp_pcb *udp_pcb;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -67,8 +66,9 @@ static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_SPI1_Init(void);
-/* USER CODE BEGIN PFP */
 
+/* USER CODE BEGIN PFP */
+static void UDP_SendReady(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -156,7 +156,7 @@ int main(void)
   MX_SPI1_Init();
   MX_LWIP_Init();
   /* USER CODE BEGIN 2 */
-  
+      
   bmi270_rslt = bmi270_stm32_interface_init(&bmi270_dev);
 
   if (bmi270_rslt == BMI2_OK)
@@ -208,7 +208,15 @@ int main(void)
     /* USER CODE BEGIN 3 */
   
     MX_LWIP_Process();
-  
+
+    static uint32_t lastUdpReadyTick = 0;
+
+    if (HAL_GetTick() - lastUdpReadyTick >= 1000)
+    {
+        UDP_SendReady();
+        lastUdpReadyTick = HAL_GetTick();
+    }
+
     static uint8_t rxByte;
     static char rxBuf[32];
     static uint32_t rxIndex = 0;
@@ -600,6 +608,61 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+static void UDP_SendReady(void)
+{
+    ip_addr_t dest_ip;
+    struct pbuf *p;
+    const char *msg = "STM32_UDP_READY";
+
+    IP4_ADDR(&dest_ip, 192, 168, 10, 1);
+
+    if (udp_pcb == NULL)
+    {
+        udp_pcb = udp_new();
+    }
+
+    if (udp_pcb == NULL)
+    {
+        return;
+    }
+
+    p = pbuf_alloc(PBUF_TRANSPORT, strlen(msg), PBUF_RAM);
+
+    if (p == NULL)
+    {
+        return;
+    }
+
+    memcpy(p->payload, msg, strlen(msg));
+
+    err_t err;
+
+    err = udp_sendto(
+        udp_pcb,
+        p,
+        &dest_ip,
+        10000
+    );
+
+    char msg2[32];
+
+  snprintf(
+      msg2,
+      sizeof(msg2),
+      "UDP_SEND %d\r\n",
+      (int)err
+  );
+
+  HAL_UART_Transmit(
+      &hcom_uart[COM1],
+      (uint8_t *)msg2,
+      strlen(msg2),
+      HAL_MAX_DELAY
+  );
+
+    pbuf_free(p);
+}
 
 /* USER CODE END 4 */
 
