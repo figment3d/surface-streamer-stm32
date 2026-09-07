@@ -28,6 +28,7 @@
 #include "bmi270_port.h"
 #include "lwip/ip4_addr.h"
 #include "lwip/udp.h"
+#include "lwip/tcp.h"
 extern struct netif gnetif;
 
 /* USER CODE END Includes */
@@ -58,6 +59,9 @@ uint8_t vl53_status = 0;
 int8_t bmi270_rslt;
 struct bmi2_dev bmi270_dev;
 static struct udp_pcb *udp_pcb;
+static struct tcp_pcb *tcp_pcb;
+static uint8_t tcp_connected = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -66,7 +70,19 @@ static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_SPI1_Init(void);
+static void TCP_Connect(void);
+static void TCP_SendReady(void);
 
+static err_t TCP_ConnectedCallback(
+    void *arg,
+    struct tcp_pcb *tpcb,
+    err_t err
+);
+
+static void TCP_ErrorCallback(
+    void *arg,
+    err_t err
+);
 /* USER CODE BEGIN PFP */
 static void UDP_SendReady(void);
 /* USER CODE END PFP */
@@ -210,11 +226,18 @@ int main(void)
     MX_LWIP_Process();
 
     static uint32_t lastUdpReadyTick = 0;
+    static uint32_t lastTcpReadyTick = 0;
 
     if (HAL_GetTick() - lastUdpReadyTick >= 1000)
     {
         UDP_SendReady();
         lastUdpReadyTick = HAL_GetTick();
+    }
+
+    if (HAL_GetTick() - lastTcpReadyTick >= 1000)
+    {
+        TCP_SendReady();
+        lastTcpReadyTick = HAL_GetTick();
     }
 
     static uint8_t rxByte;
@@ -662,6 +685,157 @@ static void UDP_SendReady(void)
   );
 
     pbuf_free(p);
+}
+
+static err_t TCP_ConnectedCallback(
+    void *arg,
+    struct tcp_pcb *tpcb,
+    err_t err)
+{
+    if (err == ERR_OK)
+    {
+        tcp_connected = 1;
+
+        static const char msg[] =
+            "TCP_CONNECTED\r\n";
+
+        HAL_UART_Transmit(
+            &hcom_uart[COM1],
+            (uint8_t *)msg,
+            sizeof(msg) - 1,
+            HAL_MAX_DELAY
+        );
+    }
+
+    return err;
+}
+
+
+static void TCP_ErrorCallback(
+    void *arg,
+    err_t err)
+{
+    tcp_pcb = NULL;
+    tcp_connected = 0;
+
+    char msg[32];
+
+    snprintf(
+        msg,
+        sizeof(msg),
+        "TCP_ERROR %d\r\n",
+        (int)err
+    );
+
+    HAL_UART_Transmit(
+        &hcom_uart[COM1],
+        (uint8_t *)msg,
+        strlen(msg),
+        HAL_MAX_DELAY
+    );
+}
+
+
+static void TCP_Connect(void)
+{
+    ip_addr_t dest_ip;
+
+    if (tcp_pcb != NULL)
+    {
+        return;
+    }
+
+    tcp_pcb = tcp_new();
+
+    if (tcp_pcb == NULL)
+    {
+        return;
+    }
+
+    tcp_err(
+        tcp_pcb,
+        TCP_ErrorCallback
+    );
+
+    IP4_ADDR(
+        &dest_ip,
+        192,
+        168,
+        10,
+        1
+    );
+
+    err_t err = tcp_connect(
+        tcp_pcb,
+        &dest_ip,
+        10001,
+        TCP_ConnectedCallback
+    );
+
+    if (err != ERR_OK)
+    {
+        char msg[32];
+
+        snprintf(
+            msg,
+            sizeof(msg),
+            "TCP_CONNECT %d\r\n",
+            (int)err
+        );
+
+        HAL_UART_Transmit(
+            &hcom_uart[COM1],
+            (uint8_t *)msg,
+            strlen(msg),
+            HAL_MAX_DELAY
+        );
+
+        tcp_abort(tcp_pcb);
+        tcp_pcb = NULL;
+        tcp_connected = 0;
+    }
+}
+
+
+static void TCP_SendReady(void)
+{
+    const char *msg =
+        "STM32_TCP_READY";
+
+    if (!tcp_connected ||
+        tcp_pcb == NULL)
+    {
+        TCP_Connect();
+        return;
+    }
+
+    err_t err = tcp_write(
+        tcp_pcb,
+        msg,
+        strlen(msg),
+        TCP_WRITE_FLAG_COPY
+    );
+
+    if (err == ERR_OK)
+    {
+        err = tcp_output(tcp_pcb);
+    }
+
+    char msg2[32];
+
+    snprintf(
+        msg2,
+        sizeof(msg2),
+        "TCP_SEND %d\r\n",
+        (int)err
+    );
+
+    HAL_UART_Transmit(
+        &hcom_uart[COM1],
+        (uint8_t *)msg2,
+        strlen(msg2),
+        HAL_MAX_DELAY
+    );
 }
 
 /* USER CODE END 4 */
