@@ -84,6 +84,14 @@ static void TCP_ErrorCallback(
     err_t err
 );
 /* USER CODE BEGIN PFP */
+
+static err_t TCP_RecvCallback(
+    void *arg,
+    struct tcp_pcb *tpcb,
+    struct pbuf *p,
+    err_t err
+);
+
 static void UDP_SendReady(void);
 /* USER CODE END PFP */
 
@@ -696,6 +704,11 @@ static err_t TCP_ConnectedCallback(
     {
         tcp_connected = 1;
 
+        tcp_recv(
+            tpcb,
+            TCP_RecvCallback
+        );
+
         static const char msg[] =
             "TCP_CONNECTED\r\n";
 
@@ -709,7 +722,50 @@ static err_t TCP_ConnectedCallback(
 
     return err;
 }
+static err_t TCP_RecvCallback(
+    void *arg,
+    struct tcp_pcb *tpcb,
+    struct pbuf *p,
+    err_t err)
+{
+    /*
+     * p == NULL means the remote side closed
+     * the TCP connection normally.
+     */
+    if (p == NULL)
+    {
+        tcp_connected = 0;
+        tcp_pcb = NULL;
 
+        tcp_close(tpcb);
+
+        static const char msg[] =
+            "TCP_CLOSED\r\n";
+
+        HAL_UART_Transmit(
+            &hcom_uart[COM1],
+            (uint8_t *)msg,
+            sizeof(msg) - 1,
+            HAL_MAX_DELAY
+        );
+
+        return ERR_OK;
+    }
+
+    /*
+     * We do not currently expect commands from
+     * the PC, but acknowledge and discard anything
+     * received.
+     */
+    tcp_recved(
+        tpcb,
+        p->tot_len
+    );
+
+    pbuf_free(p);
+
+    return ERR_OK;
+}
 
 static void TCP_ErrorCallback(
     void *arg,

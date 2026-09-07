@@ -1,0 +1,2 @@
+@echo off
+python -c "import serial,time; s=None; exec(\"try:\n s=serial.Serial('COM7',115200,timeout=1); time.sleep(.2); s.reset_input_buffer(); s.write(b'I2C_STATUS\\r\\n'); s.flush(); print(s.readline().decode(errors='replace').strip()); s.write(b'SPI_STATUS\\r\\n'); s.flush(); print(s.readline().decode(errors='replace').strip()); s.write(b'ETH_STATUS\\r\\n'); s.flush(); print(s.readline().decode(errors='replace').strip())\nexcept serial.SerialException:\n print('COM7 busy - GUI/server is probably using UART')\nfinally:\n s.close() if s else None\")"

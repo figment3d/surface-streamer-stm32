@@ -1,3 +1,2 @@
 @echo off
-call p.bat
-python -c "import socket; u=socket.socket(socket.AF_INET,socket.SOCK_DGRAM); u.settimeout(10); u.bind(('0.0.0.0',10000)); print('UDP waiting...'); data,addr=u.recvfrom(1024); print('UDP_READY',addr[0],data.decode(errors='replace')); u.close()"
+python -c "import socket; u=socket.socket(socket.AF_INET,socket.SOCK_DGRAM); exec(\"try:\n u.settimeout(5); u.bind(('0.0.0.0',10000)); print('UDP waiting...'); data,addr=u.recvfrom(1024); print('UDP_READY',addr[0],data.decode(errors='replace'))\nexcept OSError as e:\n print('UDP port 10000 busy - GUI/server is probably running') if getattr(e,'winerror',None)==10048 else print('UDP timeout - no STM32 heartbeat received') if isinstance(e,socket.timeout) else print('UDP error:',e)\nfinally:\n u.close()\")"

@@ -1,2 +1,5 @@
 @echo off
-python -c "import serial; s=serial.Serial('COM7',115200,timeout=2); s.write(b'I2C_STATUS\r'); print(s.readline().decode(errors='replace').strip()); s.write(b'SPI_STATUS\r'); print(s.readline().decode(errors='replace').strip()); s.write(b'ETH_STATUS\r'); print(s.readline().decode(errors='replace').strip()); s.close()"
+call p1.bat
+call p2.bat
+call p3.bat
+

@@ -1,0 +1,2 @@
+@echo off
+python -c "import socket; s=socket.socket(socket.AF_INET,socket.SOCK_STREAM); exec(\"try:\n s.settimeout(5); s.bind(('0.0.0.0',10001)); s.listen(1); print('TCP waiting...'); c,addr=s.accept(); data=c.recv(1024); print('TCP_READY',addr[0],data.decode(errors='replace')); c.close()\nexcept OSError as e:\n print('TCP port 10001 busy - GUI/server is probably running') if getattr(e,'winerror',None)==10048 else print('TCP timeout - STM32 may already be connected to GUI') if isinstance(e,socket.timeout) else print('TCP error:',e)\nfinally:\n s.close()\")"
