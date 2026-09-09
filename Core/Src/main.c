@@ -33,6 +33,32 @@ extern struct netif gnetif;
 
 /* USER CODE END Includes */
 
+/* USER CODE BEGIN PFP */
+
+static void TCP_Connect(void);
+static void TCP_SendReady(void);
+static void UDP_SendReady(void);
+
+static err_t TCP_ConnectedCallback(
+    void *arg,
+    struct tcp_pcb *tpcb,
+    err_t err
+);
+
+static err_t TCP_RecvCallback(
+    void *arg,
+    struct tcp_pcb *tpcb,
+    struct pbuf *p,
+    err_t err
+);
+
+static void TCP_ErrorCallback(
+    void *arg,
+    err_t err
+);
+
+/* USER CODE END PFP */
+
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
@@ -51,7 +77,11 @@ extern struct netif gnetif;
 /* Private variables ---------------------------------------------------------*/
 
 COM_InitTypeDef BspCOMInit;
+
+FDCAN_HandleTypeDef hfdcan1;
+
 I2C_HandleTypeDef hi2c1;
+
 SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
@@ -70,30 +100,7 @@ static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_SPI1_Init(void);
-static void TCP_Connect(void);
-static void TCP_SendReady(void);
-
-static err_t TCP_ConnectedCallback(
-    void *arg,
-    struct tcp_pcb *tpcb,
-    err_t err
-);
-
-static void TCP_ErrorCallback(
-    void *arg,
-    err_t err
-);
-/* USER CODE BEGIN PFP */
-
-static err_t TCP_RecvCallback(
-    void *arg,
-    struct tcp_pcb *tpcb,
-    struct pbuf *p,
-    err_t err
-);
-
-static void UDP_SendReady(void);
-/* USER CODE END PFP */
+static void MX_FDCAN1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
@@ -179,6 +186,7 @@ int main(void)
   MX_I2C1_Init();
   MX_SPI1_Init();
   MX_LWIP_Init();
+  MX_FDCAN1_Init();
   /* USER CODE BEGIN 2 */
       
   bmi270_rslt = bmi270_stm32_interface_init(&bmi270_dev);
@@ -468,7 +476,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLM = 4;
   RCC_OscInitStruct.PLL.PLLN = 9;
   RCC_OscInitStruct.PLL.PLLP = 2;
-  RCC_OscInitStruct.PLL.PLLQ = 1;
+  RCC_OscInitStruct.PLL.PLLQ = 2;
   RCC_OscInitStruct.PLL.PLLR = 2;
   RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_3;
   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOMEDIUM;
@@ -495,6 +503,59 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief FDCAN1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_FDCAN1_Init(void)
+{
+
+  /* USER CODE BEGIN FDCAN1_Init 0 */
+
+  /* USER CODE END FDCAN1_Init 0 */
+
+  /* USER CODE BEGIN FDCAN1_Init 1 */
+
+  /* USER CODE END FDCAN1_Init 1 */
+  hfdcan1.Instance = FDCAN1;
+  hfdcan1.Init.FrameFormat = FDCAN_FRAME_CLASSIC;
+  hfdcan1.Init.Mode = FDCAN_MODE_NORMAL;
+  hfdcan1.Init.AutoRetransmission = DISABLE;
+  hfdcan1.Init.TransmitPause = DISABLE;
+  hfdcan1.Init.ProtocolException = DISABLE;
+  hfdcan1.Init.NominalPrescaler = 16;
+  hfdcan1.Init.NominalSyncJumpWidth = 1;
+  hfdcan1.Init.NominalTimeSeg1 = 1;
+  hfdcan1.Init.NominalTimeSeg2 = 1;
+  hfdcan1.Init.DataPrescaler = 1;
+  hfdcan1.Init.DataSyncJumpWidth = 1;
+  hfdcan1.Init.DataTimeSeg1 = 1;
+  hfdcan1.Init.DataTimeSeg2 = 1;
+  hfdcan1.Init.MessageRAMOffset = 0;
+  hfdcan1.Init.StdFiltersNbr = 0;
+  hfdcan1.Init.ExtFiltersNbr = 0;
+  hfdcan1.Init.RxFifo0ElmtsNbr = 0;
+  hfdcan1.Init.RxFifo0ElmtSize = FDCAN_DATA_BYTES_8;
+  hfdcan1.Init.RxFifo1ElmtsNbr = 0;
+  hfdcan1.Init.RxFifo1ElmtSize = FDCAN_DATA_BYTES_8;
+  hfdcan1.Init.RxBuffersNbr = 0;
+  hfdcan1.Init.RxBufferSize = FDCAN_DATA_BYTES_8;
+  hfdcan1.Init.TxEventsNbr = 0;
+  hfdcan1.Init.TxBuffersNbr = 0;
+  hfdcan1.Init.TxFifoQueueElmtsNbr = 0;
+  hfdcan1.Init.TxFifoQueueMode = FDCAN_TX_FIFO_OPERATION;
+  hfdcan1.Init.TxElmtSize = FDCAN_DATA_BYTES_8;
+  if (HAL_FDCAN_Init(&hfdcan1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN FDCAN1_Init 2 */
+
+  /* USER CODE END FDCAN1_Init 2 */
+
 }
 
 /**
@@ -611,6 +672,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOG_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
