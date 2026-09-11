@@ -1,2 +1,3 @@
 @echo off
-python -c "import can; b=None; exec(\"try:\n b=can.Bus(interface='gs_usb', channel=0, bitrate=500000)\n print('CAN_ADAPTER_READY gs_usb')\nexcept Exception:\n print('CAN_ADAPTER_OFFLINE')\nfinally:\n b.shutdown() if b else None\")"
+python "%~dp0p4a_can_adapter.py"
+python "%~dp0p4b_can_stm32.py"

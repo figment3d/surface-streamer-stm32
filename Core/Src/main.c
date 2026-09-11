@@ -91,6 +91,8 @@ struct bmi2_dev bmi270_dev;
 static struct udp_pcb *udp_pcb;
 static struct tcp_pcb *tcp_pcb;
 static uint8_t tcp_connected = 0;
+static FDCAN_RxHeaderTypeDef canRxHeader;
+static uint8_t canRxData[8];
 
 /* USER CODE END PV */
 
@@ -240,6 +242,103 @@ int main(void)
     /* USER CODE BEGIN 3 */
   
     MX_LWIP_Process();
+
+    static uint32_t lastUartReadyTick = 0;
+
+    if (HAL_GetTick() - lastUartReadyTick >= 1000)
+    {
+        const char *msg = "UART_READY\r\n";
+
+        HAL_UART_Transmit(
+            &hcom_uart[COM1],
+            (uint8_t *)msg,
+            strlen(msg),
+            HAL_MAX_DELAY
+        );
+
+        lastUartReadyTick = HAL_GetTick();
+    }
+    
+    if (HAL_FDCAN_GetRxFifoFillLevel(&hfdcan1, FDCAN_RX_FIFO0) > 0)
+    {
+    if (HAL_FDCAN_GetRxMessage(
+            &hfdcan1,
+            FDCAN_RX_FIFO0,
+            &canRxHeader,
+            canRxData) == HAL_OK)
+    {
+        char msg[96];
+
+        snprintf(
+            msg,
+            sizeof(msg),
+            "CAN_RX 0x%03lX",
+            canRxHeader.Identifier
+        );
+
+        size_t len = strlen(msg);
+
+        for (uint32_t i = 0;
+            i < (canRxHeader.DataLength >> 16) && i < 8;
+            i++)
+        {
+        len += snprintf(
+            msg + len,
+            sizeof(msg) - len,
+            " %02X",
+            canRxData[i]
+        );
+        }
+
+        snprintf(
+            msg + len,
+            sizeof(msg) - len,
+            "\r\n"
+        );
+
+        HAL_UART_Transmit(
+            &hcom_uart[COM1],
+            (uint8_t *)msg,
+            strlen(msg),
+            HAL_MAX_DELAY
+        );
+    }
+    }
+    
+    static uint32_t lastCanDiagTick = 0;
+
+    if (HAL_GetTick() - lastCanDiagTick >= 1000)
+    {
+    FDCAN_ProtocolStatusTypeDef protocolStatus;
+    char msg[96];
+
+    uint32_t fifoLevel =
+        HAL_FDCAN_GetRxFifoFillLevel(&hfdcan1, FDCAN_RX_FIFO0);
+
+    if (HAL_FDCAN_GetProtocolStatus(
+            &hfdcan1,
+            &protocolStatus) == HAL_OK)
+    {
+        snprintf(
+            msg,
+            sizeof(msg),
+            "CAN_DIAG FIFO0=%lu LEC=%lu DLEC=%lu BUSOFF=%lu\r\n",
+            fifoLevel,
+            (uint32_t)protocolStatus.LastErrorCode,
+            (uint32_t)protocolStatus.DataLastErrorCode,
+            (uint32_t)protocolStatus.BusOff
+        );
+
+        HAL_UART_Transmit(
+            &hcom_uart[COM1],
+            (uint8_t *)msg,
+            strlen(msg),
+            HAL_MAX_DELAY
+        );
+    }
+
+    lastCanDiagTick = HAL_GetTick();
+    }
 
     static uint32_t lastUdpReadyTick = 0;
     static uint32_t lastTcpReadyTick = 0;
