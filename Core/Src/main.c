@@ -383,7 +383,18 @@ int main(void)
                 HAL_MAX_DELAY
             );
           }
+          else if (strcmp(rxBuf, "STM32_STATUS") == 0)
+          {
+              static const char reply[] =
+                  "STM32_READY NUCLEO-H753ZI\r\n";
 
+              HAL_UART_Transmit(
+                  &hcom_uart[COM1],
+                  (uint8_t *)reply,
+                  sizeof(reply) - 1,
+                  HAL_MAX_DELAY
+              );
+          }
           else if (strcmp(rxBuf, "I2C_STATUS") == 0)
           {
               if (I2C_SensorDetected())

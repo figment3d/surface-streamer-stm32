@@ -45,6 +45,7 @@ try:
     while time.time() < end_time and not found:
 
         bus.send(msg)
+        bus.recv(timeout=0.1)
 
         wait_until = time.time() + 0.5
 
