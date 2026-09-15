@@ -87,12 +87,33 @@ SPI_HandleTypeDef hspi1;
 /* USER CODE BEGIN PV */
 uint8_t vl53_status = 0;
 int8_t bmi270_rslt;
+
 struct bmi2_dev bmi270_dev;
 static struct udp_pcb *udp_pcb;
 static struct tcp_pcb *tcp_pcb;
+
 static uint8_t tcp_connected = 0;
 static FDCAN_RxHeaderTypeDef canRxHeader;
 static uint8_t canRxData[8];
+
+typedef struct
+{
+    uint8_t detected;
+
+    int16_t acc_x;
+    int16_t acc_y;
+    int16_t acc_z;
+
+    int16_t gyr_x;
+    int16_t gyr_y;
+    int16_t gyr_z;
+
+    uint32_t sample_count;
+    uint32_t error_count;
+    uint32_t last_sample_ms;
+} BMI270_State;
+
+static BMI270_State bmi270_state = {0};
 
 /* USER CODE END PV */
 
@@ -151,8 +172,37 @@ static int8_t BMI270_EnableAccelGyro(void)
     return rslt;
 }
 
-/* USER CODE END 0 */
+static void BMI270_Update(void)
+{
+    struct bmi2_sens_data sensor_data;
 
+    int8_t rslt = bmi2_get_sensor_data(
+        &sensor_data,
+        &bmi270_dev
+    );
+
+    if (rslt == BMI2_OK)
+    {
+        bmi270_state.acc_x = sensor_data.acc.x;
+        bmi270_state.acc_y = sensor_data.acc.y;
+        bmi270_state.acc_z = sensor_data.acc.z;
+
+        bmi270_state.gyr_x = sensor_data.gyr.x;
+        bmi270_state.gyr_y = sensor_data.gyr.y;
+        bmi270_state.gyr_z = sensor_data.gyr.z;
+
+        bmi270_state.sample_count++;
+        bmi270_state.detected = 1;
+    }
+    else
+    {
+        bmi270_state.error_count++;
+        bmi270_state.detected = 0;
+    }
+
+    bmi270_state.last_sample_ms = HAL_GetTick();
+}
+/* USER CODE END 0 */
 /**
   * @brief  The application entry point.
   * @retval int
@@ -202,7 +252,12 @@ int main(void)
           bmi270_rslt = BMI270_EnableAccelGyro();
       }
   }
-
+	
+  if (bmi270_rslt == BMI2_OK)
+	{
+			bmi270_state.detected = 1;
+	}
+	
   if (VL53L1X_SensorInit(0x52) == 0)
   {
       if (VL53L1X_StartRanging(0x52) == 0)
@@ -243,6 +298,26 @@ int main(void)
   
     MX_LWIP_Process();
 
+		/*
+		* Autonomous BMI270 acquisition.
+		*
+		* The STM32 samples the IMU independently of Python.
+		* Existing SPI_DATA command remains available as the
+		* legacy Python-polled acquisition path.
+		*/
+		static uint32_t lastBmi270Tick = 0;
+
+		uint32_t now = HAL_GetTick();
+
+		if ((now - lastBmi270Tick) >= 10)
+		{
+				lastBmi270Tick = now;
+
+				if (bmi270_rslt == BMI2_OK)
+				{
+						BMI270_Update();
+				}
+		}
     static uint32_t lastUartReadyTick = 0;
 
     if (HAL_GetTick() - lastUartReadyTick >= 1000)
@@ -518,6 +593,37 @@ int main(void)
                   HAL_MAX_DELAY
               );
           }
+					else if (strcmp(rxBuf, "BMI270_STATE") == 0)
+					{
+							char reply[160];
+
+							uint32_t age =
+									HAL_GetTick() - bmi270_state.last_sample_ms;
+
+							snprintf(
+									reply,
+									sizeof(reply),
+									"BMI270_STATE %s SAMPLES=%lu ERRORS=%lu AGE=%lu "
+									"ACC=%d,%d,%d GYR=%d,%d,%d\r\n",
+									bmi270_state.detected ? "ONLINE" : "OFFLINE",
+									(unsigned long)bmi270_state.sample_count,
+									(unsigned long)bmi270_state.error_count,
+									(unsigned long)age,
+									bmi270_state.acc_x,
+									bmi270_state.acc_y,
+									bmi270_state.acc_z,
+									bmi270_state.gyr_x,
+									bmi270_state.gyr_y,
+									bmi270_state.gyr_z
+							);
+
+							HAL_UART_Transmit(
+									&hcom_uart[COM1],
+									(uint8_t *)reply,
+									strlen(reply),
+									HAL_MAX_DELAY
+							);
+					}
           else if (strcmp(rxBuf, "ETH_STATUS") == 0)
           {
               char msg[64];
