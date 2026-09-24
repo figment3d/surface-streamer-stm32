@@ -115,6 +115,19 @@ typedef struct
 
 static BMI270_State bmi270_state = {0};
 
+typedef struct
+{
+    uint8_t detected;
+
+    uint16_t distance_mm;
+
+    uint32_t sample_count;
+    uint32_t error_count;
+    uint32_t last_sample_ms;
+} VL53L1X_State;
+
+static VL53L1X_State vl53l1x_state = {0};
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -170,6 +183,47 @@ static int8_t BMI270_EnableAccelGyro(void)
     );
 
     return rslt;
+}
+
+static void VL53L1X_Update(void)
+{
+    uint16_t distance = 0;
+    uint8_t dataReady = 0;
+
+    if (!I2C_SensorDetected())
+    {
+        vl53l1x_state.detected = 0;
+        vl53l1x_state.error_count++;
+        vl53l1x_state.last_sample_ms = HAL_GetTick();
+        return;
+    }
+
+    vl53l1x_state.detected = 1;
+
+    if (vl53_status &&
+        VL53L1X_CheckForDataReady(
+            0x52,
+            &dataReady
+        ) == 0 &&
+        dataReady)
+    {
+        if (VL53L1X_GetDistance(
+                0x52,
+                &distance
+            ) == 0)
+        {
+            VL53L1X_ClearInterrupt(0x52);
+
+            vl53l1x_state.distance_mm = distance;
+            vl53l1x_state.sample_count++;
+        }
+        else
+        {
+            vl53l1x_state.error_count++;
+        }
+    }
+
+    vl53l1x_state.last_sample_ms = HAL_GetTick();
 }
 
 static void BMI270_Update(void)
@@ -311,13 +365,68 @@ int main(void)
 
 		if ((now - lastBmi270Tick) >= 10)
 		{
-				lastBmi270Tick = now;
+            lastBmi270Tick = now;
 
-				if (bmi270_rslt == BMI2_OK)
-				{
-						BMI270_Update();
-				}
-		}
+            if (bmi270_rslt == BMI2_OK)
+            {
+                BMI270_Update();
+            }
+        }
+        /*
+        * Publish cached BMI270 state to the host.
+        *
+        * Acquisition runs independently at ~100 Hz.
+        * Telemetry is intentionally slower (~10 Hz).
+        */
+        static uint32_t lastBmi270TelemetryTick = 0;
+
+        if ((now - lastBmi270TelemetryTick) >= 100)
+        {
+            lastBmi270TelemetryTick = now;
+
+            char msg[160];
+
+            snprintf(
+                msg,
+                sizeof(msg),
+                "BMI270_TELEM %s SAMPLES=%lu ERRORS=%lu AGE=%lu "
+                "ACC=%d,%d,%d GYR=%d,%d,%d\r\n",
+                bmi270_state.detected ? "ONLINE" : "OFFLINE",
+                (unsigned long)bmi270_state.sample_count,
+                (unsigned long)bmi270_state.error_count,
+                (unsigned long)(now - bmi270_state.last_sample_ms),
+                bmi270_state.acc_x,
+                bmi270_state.acc_y,
+                bmi270_state.acc_z,
+                bmi270_state.gyr_x,
+                bmi270_state.gyr_y,
+                bmi270_state.gyr_z
+            );
+
+            HAL_UART_Transmit(
+                &hcom_uart[COM1],
+                (uint8_t *)msg,
+                strlen(msg),
+                HAL_MAX_DELAY
+            );
+        }
+        
+        /*
+        * Autonomous VL53L1X acquisition.
+        *
+        * The STM32 monitors the range sensor independently
+        * of Python. Existing I2C_STATUS remains available
+        * as the legacy Python-polled path.
+        */
+        static uint32_t lastVl53l1xTick = 0;
+
+        if (0 && (now - lastVl53l1xTick) >= 100)
+        {
+            lastVl53l1xTick = now;
+
+            VL53L1X_Update();
+        }
+
     static uint32_t lastUartReadyTick = 0;
 
     if (HAL_GetTick() - lastUartReadyTick >= 1000)
@@ -432,6 +541,7 @@ int main(void)
 
     static uint8_t rxByte;
     static char rxBuf[32];
+    static char debugMsg[64];
     static uint32_t rxIndex = 0;
 
     if (HAL_UART_Receive(
@@ -445,6 +555,20 @@ int main(void)
         if (rxIndex > 0)
         {
           rxBuf[rxIndex] = '\0';
+
+          snprintf(
+              debugMsg,
+              sizeof(debugMsg),
+              "UART_CMD [%s]\r\n",
+              rxBuf
+          );
+
+          HAL_UART_Transmit(
+              &hcom_uart[COM1],
+              (uint8_t *)debugMsg,
+              strlen(debugMsg),
+              HAL_MAX_DELAY
+          );
 
           if (strcmp(rxBuf, "PING") == 0)
           {

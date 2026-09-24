@@ -22,7 +22,11 @@ try:
     ser.flush()
 
     found = False
+    saw_uart_traffic = False
     end_time = time.time() + 2.0
+
+    print("STM32_STATUS test")
+    print("  TX: STM32_STATUS")
 
     while time.time() < end_time:
         line = ser.readline()
@@ -32,13 +36,24 @@ try:
 
         text = line.decode(errors="replace").strip()
 
+        if not text:
+            continue
+
+        saw_uart_traffic = True
+        print(f"  RX: {text}")
+
         if text.startswith("STM32_READY"):
             print("STM32 - NUCLEO-H753ZI ONLINE")
             found = True
             break
 
     if not found:
-        print("STM32 - NUCLEO-H753ZI NOT DETECTED")
-
+        if saw_uart_traffic:
+            print("STM32 - NUCLEO-H753ZI STATUS RESPONSE TIMEOUT")
+            print("  UART traffic was received, but STM32_READY was not.")
+        else:
+            print("STM32 - NUCLEO-H753ZI NOT DETECTED")
+            print("  No UART traffic received.")
 finally:
     ser.close()
+      
